@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Icon from "@/components/ui/Icon";
 
 const defaultStats = [
   { value: "1200+", label: "Happy Customers" },
@@ -73,9 +74,59 @@ function Counter({ value, run, duration = 1800 }) {
   );
 }
 
-export default function Stats({ stats = defaultStats }) {
+export default function Stats({
+  stats = defaultStats,
+  // "band" (default): compact yellow strip. "light": white "achievements at a
+  // glance" section with an optional heading and yellow icons per stat.
+  variant = "band",
+  eyebrow = "Our Achievements at a Glance",
+  title,
+}) {
   const ref = useRef(null);
   const inView = useInView(ref);
+
+  if (variant === "light") {
+    const cols =
+      stats.length === 3 ? "sm:grid-cols-3" : stats.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-4";
+    return (
+      <section ref={ref} className="section bg-white">
+        <div className="container-page">
+          {(eyebrow || title) && (
+            <div className="mx-auto mb-14 max-w-3xl text-center">
+              {eyebrow && (
+                <span className="mb-4 inline-block text-sm font-extrabold uppercase tracking-[0.2em] text-ink-strong">
+                  {eyebrow}
+                </span>
+              )}
+              {title && (
+                <h2 className="text-3xl font-normal leading-tight text-ink-strong md:text-[2.5rem]">
+                  {title}
+                </h2>
+              )}
+            </div>
+          )}
+          <div className={`grid grid-cols-1 gap-12 divide-y divide-surface-border sm:divide-y-0 sm:divide-x ${cols}`}>
+            {stats.map((s) => (
+              <div key={s.label} className="px-6 pt-8 text-center first:pt-0 sm:pt-0">
+                {s.icon && (
+                  <span className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand/15 text-brand-dark">
+                    <Icon name={s.icon} size={34} />
+                  </span>
+                )}
+                <p className="text-5xl font-extrabold tabular-nums text-ink-strong md:text-6xl">
+                  <Counter value={s.value} run={inView} />
+                </p>
+                <p className="mt-2 text-sm font-bold uppercase tracking-wide text-ink-soft">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section ref={ref} className="bg-brand">
       <div className="container-page grid grid-cols-2 gap-6 py-12 md:grid-cols-4">

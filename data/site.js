@@ -13,10 +13,10 @@ export const site = {
     label: "0800 600 003",
     href: "tel:0800600003",
   },
-  altPhone: {
-    label: "+64 22 680 1545",
-    href: "tel:+64226801545",
-  },
+  // altPhone: {
+  //   label: "+64 22 680 1545",
+  //   href: "tel:+64226801545",
+  // },
   email: "info@nationalmovers.co.nz",
   address: {
     line: "36a Sixteenth Avenue, Tauranga",

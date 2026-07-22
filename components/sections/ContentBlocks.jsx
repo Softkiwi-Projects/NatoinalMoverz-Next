@@ -1,4 +1,29 @@
+import Link from "next/link";
 import Icon from "@/components/ui/Icon";
+
+// Renders inline runs ({t, b?, i?, href?}) as styled React elements —
+// bold, italic and links survive extraction without raw HTML injection.
+function Inline({ runs, text }) {
+  if (!runs?.length) return text ?? null;
+  return runs.map((r, i) => {
+    let node = r.t;
+    if (r.b) node = <strong key={`b${i}`}>{node}</strong>;
+    if (r.i) node = <em key={`i${i}`}>{node}</em>;
+    if (r.href) {
+      const cls = "font-semibold text-brand-dark underline decoration-brand decoration-2 underline-offset-2 hover:text-ink-strong";
+      node = r.href.startsWith("/") ? (
+        <Link key={`a${i}`} href={r.href} className={cls}>
+          {node}
+        </Link>
+      ) : (
+        <a key={`a${i}`} href={r.href} className={cls} target="_blank" rel="noopener noreferrer">
+          {node}
+        </a>
+      );
+    }
+    return r.b || r.i || r.href ? node : <span key={i}>{node}</span>;
+  });
+}
 
 // Renders ordered content blocks (extracted from the source pages) as real,
 // styled React elements — no raw HTML injection.
@@ -7,25 +32,35 @@ export default function ContentBlocks({ blocks = [], className = "" }) {
   return (
     <div className={`prose-nm ${className}`}>
       {blocks.map((b, i) => {
-        if (b.type === "h2") return <h2 key={i}>{b.text}</h2>;
-        if (b.type === "h3") return <h3 key={i}>{b.text}</h3>;
-        if (b.type === "ul")
+        if (b.type === "h2")
           return (
-            <ul key={i}>
-              {b.items.map((it, j) => (
-                <li key={j}>{it}</li>
-              ))}
-            </ul>
+            <h2 key={i}>
+              <Inline runs={b.runs} text={b.text} />
+            </h2>
           );
-        if (b.type === "ol")
+        if (b.type === "h3")
           return (
-            <ol key={i}>
-              {b.items.map((it, j) => (
-                <li key={j}>{it}</li>
-              ))}
-            </ol>
+            <h3 key={i}>
+              <Inline runs={b.runs} text={b.text} />
+            </h3>
           );
-        return <p key={i}>{b.text}</p>;
+        if (b.type === "ul" || b.type === "ol") {
+          const ListTag = b.type;
+          return (
+            <ListTag key={i}>
+              {b.items.map((it, j) => (
+                <li key={j}>
+                  <Inline runs={b.runsItems?.[j]} text={it} />
+                </li>
+              ))}
+            </ListTag>
+          );
+        }
+        return (
+          <p key={i}>
+            <Inline runs={b.runs} text={b.text} />
+          </p>
+        );
       })}
     </div>
   );

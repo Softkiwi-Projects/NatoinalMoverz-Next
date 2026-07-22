@@ -1,5 +1,9 @@
-import TitleBar from "@/components/layout/TitleBar";
 import QuoteForm from "@/components/sections/QuoteForm";
+import GoogleReviews from "@/components/sections/GoogleReviews";
+import FocusedBand from "@/components/sections/FocusedBand";
+import ServicesGrid from "@/components/sections/ServicesGrid";
+import LatestNewsBand from "@/components/sections/LatestNewsBand";
+import ContactStrip from "@/components/sections/ContactStrip";
 import Icon from "@/components/ui/Icon";
 import { getPageContent } from "@/lib/content";
 import { site } from "@/data/site";
@@ -13,75 +17,76 @@ export function generateMetadata() {
   };
 }
 
-const details = [
-  { icon: "phone", label: "Phone", value: site.phone.label, href: site.phone.href },
-  { icon: "mail", label: "Email", value: site.email, href: `mailto:${site.email}` },
-  { icon: "map", label: "Address", value: site.address.line, href: site.address.href },
-  { icon: "clock", label: "Hours", value: site.hours },
+const cards = [
+  { icon: "map", label: "Our Address", value: site.address.line, href: site.address.href },
+  { icon: "phone", label: "Phone Number", value: site.phone.label, href: site.phone.href },
+  { icon: "mail", label: "Email Address", value: site.email, href: `mailto:${site.email}` },
 ];
 
 export default function ContactsPage() {
   return (
     <>
-      <TitleBar
-        title="Contact Us"
-        subtitle="Get in touch for a free quote or any questions about your move."
-        crumbs={[{ label: "Contacts" }]}
-      />
+      {/* FULL-WIDTH MAP */}
+      <section className="relative">
+        <iframe
+          title="National Movers — Tauranga"
+          src="https://www.google.com/maps?q=36a+Sixteenth+Avenue+Tauranga&z=10&output=embed"
+          className="block h-[340px] w-full border-0 md:h-[420px]"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </section>
 
+      {/* THREE ICON CARDS */}
       <section className="section">
-        <div className="container-page grid gap-12 lg:grid-cols-2">
-          <div>
-            <span className="eyebrow">Get In Touch</span>
-            <h2 className="section-title mb-4">We'd love to help with your move</h2>
-            <p className="mb-8 text-lg text-ink-soft">
-              Reach out by phone or email, or send us your details and we'll get back to you with a
-              tailored, no-obligation quote.
-            </p>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {details.map((d) => (
-                <div
-                  key={d.label}
-                  className="flex items-start gap-4 rounded-2xl border border-surface-border bg-white p-5 shadow-soft"
-                >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand/15 text-brand-dark">
-                    <Icon name={d.icon} size={22} />
-                  </span>
-                  <div>
-                    <p className="text-sm font-bold uppercase tracking-wide text-ink-soft">
-                      {d.label}
-                    </p>
-                    {d.href ? (
-                      <a href={d.href} className="font-semibold text-ink-strong hover:text-brand-dark">
-                        {d.value}
-                      </a>
-                    ) : (
-                      <p className="font-semibold text-ink-strong">{d.value}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
+        <div className="container-page grid gap-8 text-center sm:grid-cols-3">
+          {cards.map((c) => (
+            <div key={c.label} className="flex flex-col items-center">
+              <span className="mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-brand text-ink-strong shadow-soft">
+                <Icon name={c.icon} size={34} />
+              </span>
+              <h3 className="mb-1.5 text-lg font-extrabold text-ink-strong">{c.label}</h3>
+              {c.href ? (
+                <a href={c.href} className="font-medium text-ink-soft transition-colors hover:text-brand-dark">
+                  {c.value}
+                </a>
+              ) : (
+                <p className="font-medium text-ink-soft">{c.value}</p>
+              )}
             </div>
-
-            <div className="mt-8 overflow-hidden rounded-2xl shadow-soft">
-              <iframe
-                title="National Movers location"
-                src="https://www.google.com/maps?q=Sixteenth+Avenue+Tauranga&output=embed"
-                width="100%"
-                height="300"
-                loading="lazy"
-                className="block border-0"
-              />
-            </div>
-          </div>
-
-          <div>
-            <h2 className="mb-4 text-2xl font-extrabold text-ink-strong">Request a Free Quote</h2>
-            <QuoteForm />
-          </div>
+          ))}
         </div>
       </section>
+
+      {/* DROP US A LINE — quote form */}
+      <section className="section pt-0">
+        <div className="container-page mx-auto max-w-4xl">
+          <div className="mb-8 text-center">
+            <span className="mb-3 inline-block text-sm font-extrabold uppercase tracking-[0.2em] text-ink-strong">
+              Contact Us
+            </span>
+            <h2 className="text-3xl font-normal text-ink-strong md:text-[2.5rem]">
+              Drop us a <strong className="font-extrabold">line</strong>
+            </h2>
+          </div>
+          <QuoteForm variant="panel" />
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <GoogleReviews />
+
+      {/* FOCUSED ON QUALITY BAND */}
+      <FocusedBand />
+
+      {/* OUR QUALITY SERVICES */}
+      <ServicesGrid />
+
+      {/* LATEST NEWS BAND */}
+      <LatestNewsBand />
+
+      {/* CONTACT STRIP */}
+      <ContactStrip />
     </>
   );
 }

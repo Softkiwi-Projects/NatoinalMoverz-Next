@@ -1,6 +1,7 @@
 import QuoteForm from "@/components/sections/QuoteForm";
 import GoogleReviews from "@/components/sections/GoogleReviews";
 import CTA from "@/components/sections/CTA";
+import ContactStrip from "@/components/sections/ContactStrip";
 import Icon from "@/components/ui/Icon";
 import { getBlocks } from "@/lib/content";
 import { getServiceDetails, WHY_CHOOSE, HOURS, DEFAULT_STRIP } from "@/data/serviceDetails";
@@ -38,7 +39,10 @@ export default function ServiceTemplate({ service }) {
         className="relative scroll-mt-24 bg-cover bg-center"
         style={{ backgroundImage: `url(${service.image})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/30 to-black/20" />
+        {/* Gradient overlay: dark at the edges, clear in the middle, so the
+            photo reads while the yellow card and header keep contrast. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/75 via-brand-dark/25 to-brand-dark/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/40 via-transparent to-brand-dark/40" />
         <div className="container-page relative py-12 md:py-16">
           <div className="mx-auto max-w-3xl rounded-3xl bg-brand px-6 py-9 text-center shadow-card md:px-12 md:py-11">
             <h1 className="font-heading text-3xl font-extrabold text-ink-strong md:text-4xl">
@@ -243,36 +247,11 @@ export default function ServiceTemplate({ service }) {
           d.getStarted?.subtitle ||
           "Request a quote online or call us to discuss your move. Let our friendly team make your transition stress-free."
         }
+        quoteHref="#quote"
       />
 
-      <section className="bg-brand py-8">
-        <div className="container-page grid gap-6 sm:grid-cols-3">
-          <ContactItem icon="phone" label="Phone" href={site.phone.href}>
-            {site.phone.label} · {site.altPhone.label}
-          </ContactItem>
-          <ContactItem icon="map" label="Address" href={site.address.href}>
-            {site.address.line}
-          </ContactItem>
-          <ContactItem icon="mail" label="Email" href={`mailto:${site.email}`}>
-            {site.email}
-          </ContactItem>
-        </div>
-      </section>
+      <ContactStrip />
     </>
-  );
-}
-
-function ContactItem({ icon, label, href, children }) {
-  return (
-    <a href={href} className="flex items-center justify-center gap-4 sm:justify-start lg:justify-center">
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-dark text-brand">
-        <Icon name={icon} size={22} />
-      </span>
-      <span className="leading-snug">
-        <b className="block text-ink-strong">{label}</b>
-        <span className="text-sm font-medium text-ink-strong/75">{children}</span>
-      </span>
-    </a>
   );
 }
 
