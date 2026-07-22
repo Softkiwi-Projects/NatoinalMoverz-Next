@@ -1,0 +1,261 @@
+{
+ "categories": [
+  {
+   "slug": "house-relocation",
+   "name": "house relocation",
+   "description": null
+  },
+  {
+   "slug": "household-moving",
+   "name": "Household Moving",
+   "description": null
+  },
+  {
+   "slug": "packing-and-moving-company",
+   "name": "Packing and Moving Company",
+   "description": null
+  },
+  {
+   "slug": "relocation-moving",
+   "name": "Relocation Moving",
+   "description": null
+  }
+ ],
+ "tags": [
+  {
+   "slug": "affordable-house-movers",
+   "name": "Affordable House Movers",
+   "description": null
+  },
+  {
+   "slug": "affordable-house-movers-tauranga",
+   "name": "Affordable House Movers Tauranga",
+   "description": null
+  },
+  {
+   "slug": "commercial-mover-tauranga",
+   "name": "Commercial Mover Tauranga",
+   "description": null
+  },
+  {
+   "slug": "commercial-relocation-services-tauranga",
+   "name": "Commercial Relocation Services Tauranga",
+   "description": null
+  },
+  {
+   "slug": "furniture-movers-tauranga",
+   "name": "Furniture Movers Tauranga",
+   "description": null
+  },
+  {
+   "slug": "furniture-removal-near-me",
+   "name": "Furniture Removal near me",
+   "description": null
+  },
+  {
+   "slug": "furniture-removal-tauranga",
+   "name": "Furniture Removal Tauranga",
+   "description": null
+  },
+  {
+   "slug": "furniture-removals-tauranga",
+   "name": "Furniture Removals Tauranga",
+   "description": null
+  },
+  {
+   "slug": "home-movers-company",
+   "name": "Home Movers Company",
+   "description": null
+  },
+  {
+   "slug": "home-movers-company-tauranga",
+   "name": "Home Movers Company Tauranga",
+   "description": null
+  },
+  {
+   "slug": "home-movers-services",
+   "name": "Home Movers Services",
+   "description": null
+  },
+  {
+   "slug": "home-movers-services-tauranga",
+   "name": "Home Movers Services Tauranga",
+   "description": null
+  },
+  {
+   "slug": "home-relocation-services",
+   "name": "Home Relocation Services",
+   "description": null
+  },
+  {
+   "slug": "house-movers-near-me",
+   "name": "House Movers Near Me",
+   "description": null
+  },
+  {
+   "slug": "house-movers-tauranga",
+   "name": "House Movers Tauranga",
+   "description": null
+  },
+  {
+   "slug": "house-moving-company",
+   "name": "House Moving Company",
+   "description": null
+  },
+  {
+   "slug": "house-moving-company-near-me",
+   "name": "House Moving Company Near Me",
+   "description": null
+  },
+  {
+   "slug": "house-moving-service",
+   "name": "House Moving Service",
+   "description": null
+  },
+  {
+   "slug": "house-packers-and-movers-tauranga",
+   "name": "House Packers and Movers Tauranga",
+   "description": null
+  },
+  {
+   "slug": "household-movers-tauranga",
+   "name": "Household Movers Tauranga",
+   "description": null
+  },
+  {
+   "slug": "kitchen-movers-tauranga",
+   "name": "Kitchen Movers Tauranga",
+   "description": null
+  },
+  {
+   "slug": "movers-for-piano-tauranga",
+   "name": "Movers for Piano Tauranga",
+   "description": null
+  },
+  {
+   "slug": "movers-tauranga",
+   "name": "Movers Tauranga",
+   "description": null
+  },
+  {
+   "slug": "moving-and-packing-company-tauranga",
+   "name": "Moving and Packing Company Tauranga",
+   "description": null
+  },
+  {
+   "slug": "moving-and-storage-services",
+   "name": "Moving and Storage Services",
+   "description": null
+  },
+  {
+   "slug": "moving-company",
+   "name": "Moving Company",
+   "description": null
+  },
+  {
+   "slug": "moving-company-commercial-tauranga",
+   "name": "Moving Company Commercial Tauranga",
+   "description": null
+  },
+  {
+   "slug": "moving-company-tauranga",
+   "name": "Moving Company Tauranga",
+   "description": null
+  },
+  {
+   "slug": "moving-packing-services-tauranga",
+   "name": "Moving Packing Services Tauranga",
+   "description": null
+  },
+  {
+   "slug": "moving-services",
+   "name": "Moving Services",
+   "description": null
+  },
+  {
+   "slug": "moving-services-tauranga",
+   "name": "Moving Services Tauranga",
+   "description": null
+  },
+  {
+   "slug": "office-furniture-movers-tauranga",
+   "name": "Office Furniture Movers Tauranga",
+   "description": null
+  },
+  {
+   "slug": "office-movers-tauranga",
+   "name": "Office Movers Tauranga",
+   "description": null
+  },
+  {
+   "slug": "office-moving-company-tauranga",
+   "name": "Office Moving Company Tauranga",
+   "description": null
+  },
+  {
+   "slug": "office-relocation-tauranga",
+   "name": "Office Relocation Tauranga",
+   "description": null
+  },
+  {
+   "slug": "office-removalists-tauranga",
+   "name": "Office Removalists Tauranga",
+   "description": null
+  },
+  {
+   "slug": "office-removals-tauranga",
+   "name": "Office Removals Tauranga",
+   "description": null
+  },
+  {
+   "slug": "pack-and-ship-services-tauranga",
+   "name": "Pack and Ship Services Tauranga",
+   "description": null
+  },
+  {
+   "slug": "packers-movers-near-me",
+   "name": "Packers & Movers Near Me",
+   "description": null
+  },
+  {
+   "slug": "packing-and-moving-company",
+   "name": "Packing and Moving Company",
+   "description": null
+  },
+  {
+   "slug": "packing-company-near-me",
+   "name": "Packing Company Near Me",
+   "description": null
+  },
+  {
+   "slug": "packing-company-tauranga",
+   "name": "Packing Company Tauranga",
+   "description": null
+  },
+  {
+   "slug": "packing-services-tauranga",
+   "name": "Packing Services Tauranga",
+   "description": null
+  },
+  {
+   "slug": "piano-moving-company-tauranga",
+   "name": "Piano Moving Company Tauranga",
+   "description": null
+  },
+  {
+   "slug": "piano-removal-specialists-tauranga",
+   "name": "Piano Removal Specialists Tauranga",
+   "description": null
+  },
+  {
+   "slug": "residential-move-tauranga",
+   "name": "Residential Move Tauranga",
+   "description": null
+  },
+  {
+   "slug": "residential-movers-tauranga",
+   "name": "Residential Movers Tauranga",
+   "description": null
+  }
+ ]
+}

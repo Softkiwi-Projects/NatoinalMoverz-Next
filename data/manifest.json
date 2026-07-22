@@ -1,0 +1,462 @@
+[
+ {
+  "route": "",
+  "file": "home.json",
+  "title": "Moving Company | Movers New Zealand | National Movers"
+ },
+ {
+  "route": "piano-moving-service",
+  "file": "piano-moving-service.json",
+  "title": "Piano Moving Company Tauranga | Piano Removal Specialists"
+ },
+ {
+  "route": "quote-form",
+  "file": "quote-form.json",
+  "title": "Quote Form - National Movers"
+ },
+ {
+  "route": "about-us",
+  "file": "about-us.json",
+  "title": "About Us | National Movers"
+ },
+ {
+  "route": "auckland-movers",
+  "file": "auckland-movers.json",
+  "title": "Moving Company | Movers Auckland | National Movers"
+ },
+ {
+  "route": "blog",
+  "file": "blog.json",
+  "title": "Blog Section - National Movers"
+ },
+ {
+  "route": "category/house-relocation",
+  "file": "category__house-relocation.json",
+  "title": "house relocation Archives - National Movers"
+ },
+ {
+  "route": "category/household-moving",
+  "file": "category__household-moving.json",
+  "title": "Household Moving Archives - National Movers"
+ },
+ {
+  "route": "category/packing-and-moving-company",
+  "file": "category__packing-and-moving-company.json",
+  "title": "Packing and Moving Company Archives - National Movers"
+ },
+ {
+  "route": "category/relocation-moving",
+  "file": "category__relocation-moving.json",
+  "title": "Relocation Moving Archives - National Movers"
+ },
+ {
+  "route": "choosing-the-right-commercial-moving-company-in-tauranga-for-your-business",
+  "file": "choosing-the-right-commercial-moving-company-in-tauranga-for-your-business.json",
+  "title": "Commercial Moving Company in Tauranga"
+ },
+ {
+  "route": "christchurch-movers",
+  "file": "christchurch-movers.json",
+  "title": "Moving Company | Movers Christchurch | National Movers"
+ },
+ {
+  "route": "complete-house-moving-checklist-for-nz-families",
+  "file": "complete-house-moving-checklist-for-nz-families.json",
+  "title": "Complete House Moving Checklist for NZ Families"
+ },
+ {
+  "route": "complete-moving-guide-in-tauranga-costs-packing-tips-how-to-choose-the-right-movers",
+  "file": "complete-moving-guide-in-tauranga-costs-packing-tips-how-to-choose-the-right-movers.json",
+  "title": "Complete Moving Guide in Tauranga: Costs, Packing Tips"
+ },
+ {
+  "route": "contacts",
+  "file": "contacts.json",
+  "title": "Contact Us | National Movers"
+ },
+ {
+  "route": "fragile-delicate-items-heres-how-we-keep-them-safe-during-your-move",
+  "file": "fragile-delicate-items-heres-how-we-keep-them-safe-during-your-move.json",
+  "title": "Fragile & Delicate Items? Here’s How We Keep Them Safe During Your Move"
+ },
+ {
+  "route": "furniture-moving-from-tauranga-to-auckland-long-distance-tips",
+  "file": "furniture-moving-from-tauranga-to-auckland-long-distance-tips.json",
+  "title": "Furniture Moving from Tauranga to Auckland: Long-Distance Tips"
+ },
+ {
+  "route": "furniture-moving-service",
+  "file": "furniture-moving-service.json",
+  "title": "Furniture Removals Tauranga | Furniture Movers near you"
+ },
+ {
+  "route": "hamilton-movers",
+  "file": "hamilton-movers.json",
+  "title": "Moving Company | Movers Hamilton | National Movers"
+ },
+ {
+  "route": "house-movers-near-me-how-to-choose-the-right-moving-company-in-tauranga",
+  "file": "house-movers-near-me-how-to-choose-the-right-moving-company-in-tauranga.json",
+  "title": "How to Choose the Right Moving Company in Tauranga"
+ },
+ {
+  "route": "house-moving-service",
+  "file": "house-moving-service.json",
+  "title": "Residential & Household Movers Tauranga | National Movers"
+ },
+ {
+  "route": "how-moving-companies-keep-your-belongings-safe-during-transport",
+  "file": "how-moving-companies-keep-your-belongings-safe-during-transport.json",
+  "title": "How Moving Companies Protect Your Items"
+ },
+ {
+  "route": "how-national-movers-handles-fragile-office-equipment-during-relocations",
+  "file": "how-national-movers-handles-fragile-office-equipment-during-relocations.json",
+  "title": "Safe Office Equipment Moving by National Movers"
+ },
+ {
+  "route": "how-professional-home-movers-can-make-your-move-completely-stress-free",
+  "file": "how-professional-home-movers-can-make-your-move-completely-stress-free.json",
+  "title": "How Pro Home Movers Make Your Move Completely Stress-Free"
+ },
+ {
+  "route": "how-professional-piano-removalists-protect-your-instrument-during-transit",
+  "file": "how-professional-piano-removalists-protect-your-instrument-during-transit.json",
+  "title": "How to protect a piano during moving"
+ },
+ {
+  "route": "how-to-move-heavy-furniture-upstairs-expert-furniture-moving-tips",
+  "file": "how-to-move-heavy-furniture-upstairs-expert-furniture-moving-tips.json",
+  "title": "How to Move Heavy Furniture Upstairs | Expert Moving Tips"
+ },
+ {
+  "route": "how-to-pack-office-furniture-files-and-equipment-safely",
+  "file": "how-to-pack-office-furniture-files-and-equipment-safely.json",
+  "title": "How to Pack Office Furniture, Files, and Equipment Safely"
+ },
+ {
+  "route": "how-to-plan-a-last-minute-household-move-in-tauranga-without-stress",
+  "file": "how-to-plan-a-last-minute-household-move-in-tauranga-without-stress.json",
+  "title": "Last-Minute Household Moves Made Easy"
+ },
+ {
+  "route": "how-to-prepare-your-furniture-for-safe-and-easy-removal",
+  "file": "how-to-prepare-your-furniture-for-safe-and-easy-removal.json",
+  "title": "Prepare Your Furniture for Safe and Easy Removal"
+ },
+ {
+  "route": "invercargill-movers",
+  "file": "invercargill-movers.json",
+  "title": "Moving Company | Movers Invercargill | National Movers"
+ },
+ {
+  "route": "kitchen-moving-service",
+  "file": "kitchen-moving-service.json",
+  "title": "Trusted Kitchen Movers Tauranga | National Movers"
+ },
+ {
+  "route": "man-and-a-van-in-tauranga-is-it-right-for-your-move",
+  "file": "man-and-a-van-in-tauranga-is-it-right-for-your-move.json",
+  "title": "Man and a Van in Tauranga: Is It Right for Your Move?"
+ },
+ {
+  "route": "moving-heavy-kitchen-appliances-safely-tips-from-professional-movers",
+  "file": "moving-heavy-kitchen-appliances-safely-tips-from-professional-movers.json",
+  "title": "Moving Heavy Kitchen Appliances Safely"
+ },
+ {
+  "route": "northshore-movers",
+  "file": "northshore-movers.json",
+  "title": "Moving Company | Movers North Shore | National Movers"
+ },
+ {
+  "route": "office-relocation-in-new-zealand-complete-guide-to-costs-timelines-best-practices",
+  "file": "office-relocation-in-new-zealand-complete-guide-to-costs-timelines-best-practices.json",
+  "title": "Complete Guide to Office Relocation in NZ"
+ },
+ {
+  "route": "office-relocation-service",
+  "file": "office-relocation-service.json",
+  "title": "Office Removals Tauranga | Office Furniture Movers Tauranga"
+ },
+ {
+  "route": "rotorua-movers",
+  "file": "rotorua-movers.json",
+  "title": "Moving Company | Movers Rotrua | National Movers"
+ },
+ {
+  "route": "tag/affordable-house-movers",
+  "file": "tag__affordable-house-movers.json",
+  "title": "Affordable House Movers Archives - National Movers"
+ },
+ {
+  "route": "tag/affordable-house-movers-tauranga",
+  "file": "tag__affordable-house-movers-tauranga.json",
+  "title": "Affordable House Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/commercial-mover-tauranga",
+  "file": "tag__commercial-mover-tauranga.json",
+  "title": "Commercial Mover Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/commercial-relocation-services-tauranga",
+  "file": "tag__commercial-relocation-services-tauranga.json",
+  "title": "Commercial Relocation Services Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/furniture-movers-tauranga",
+  "file": "tag__furniture-movers-tauranga.json",
+  "title": "Furniture Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/furniture-removal-near-me",
+  "file": "tag__furniture-removal-near-me.json",
+  "title": "Furniture Removal near me Archives - National Movers"
+ },
+ {
+  "route": "tag/furniture-removal-tauranga",
+  "file": "tag__furniture-removal-tauranga.json",
+  "title": "Furniture Removal Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/furniture-removals-tauranga",
+  "file": "tag__furniture-removals-tauranga.json",
+  "title": "Furniture Removals Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/home-movers-company",
+  "file": "tag__home-movers-company.json",
+  "title": "Home Movers Company Archives - National Movers"
+ },
+ {
+  "route": "tag/home-movers-company-tauranga",
+  "file": "tag__home-movers-company-tauranga.json",
+  "title": "Home Movers Company Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/home-movers-services",
+  "file": "tag__home-movers-services.json",
+  "title": "Home Movers Services Archives - National Movers"
+ },
+ {
+  "route": "tag/home-movers-services-tauranga",
+  "file": "tag__home-movers-services-tauranga.json",
+  "title": "Home Movers Services Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/home-relocation-services",
+  "file": "tag__home-relocation-services.json",
+  "title": "Home Relocation Services Archives - National Movers"
+ },
+ {
+  "route": "tag/house-movers-near-me",
+  "file": "tag__house-movers-near-me.json",
+  "title": "House Movers Near Me Archives - National Movers"
+ },
+ {
+  "route": "tag/house-movers-tauranga",
+  "file": "tag__house-movers-tauranga.json",
+  "title": "House Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/house-moving-company",
+  "file": "tag__house-moving-company.json",
+  "title": "House Moving Company Archives - National Movers"
+ },
+ {
+  "route": "tag/house-moving-company-near-me",
+  "file": "tag__house-moving-company-near-me.json",
+  "title": "House Moving Company Near Me Archives - National Movers"
+ },
+ {
+  "route": "tag/house-moving-service",
+  "file": "tag__house-moving-service.json",
+  "title": "House Moving Service Archives - National Movers"
+ },
+ {
+  "route": "tag/house-packers-and-movers-tauranga",
+  "file": "tag__house-packers-and-movers-tauranga.json",
+  "title": "House Packers and Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/household-movers-tauranga",
+  "file": "tag__household-movers-tauranga.json",
+  "title": "Household Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/kitchen-movers-tauranga",
+  "file": "tag__kitchen-movers-tauranga.json",
+  "title": "Kitchen Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/movers-for-piano-tauranga",
+  "file": "tag__movers-for-piano-tauranga.json",
+  "title": "Movers for Piano Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/movers-tauranga",
+  "file": "tag__movers-tauranga.json",
+  "title": "Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/moving-and-packing-company-tauranga",
+  "file": "tag__moving-and-packing-company-tauranga.json",
+  "title": "Moving and Packing Company Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/moving-and-storage-services",
+  "file": "tag__moving-and-storage-services.json",
+  "title": "Moving and Storage Services Archives - National Movers"
+ },
+ {
+  "route": "tag/moving-company",
+  "file": "tag__moving-company.json",
+  "title": "Moving Company Archives - National Movers"
+ },
+ {
+  "route": "tag/moving-company-commercial-tauranga",
+  "file": "tag__moving-company-commercial-tauranga.json",
+  "title": "Moving Company Commercial Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/moving-company-tauranga",
+  "file": "tag__moving-company-tauranga.json",
+  "title": "Moving Company Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/moving-packing-services-tauranga",
+  "file": "tag__moving-packing-services-tauranga.json",
+  "title": "Moving Packing Services Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/moving-services",
+  "file": "tag__moving-services.json",
+  "title": "Moving Services Archives - National Movers"
+ },
+ {
+  "route": "tag/moving-services-tauranga",
+  "file": "tag__moving-services-tauranga.json",
+  "title": "Moving Services Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/office-furniture-movers-tauranga",
+  "file": "tag__office-furniture-movers-tauranga.json",
+  "title": "Office Furniture Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/office-movers-tauranga",
+  "file": "tag__office-movers-tauranga.json",
+  "title": "Office Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/office-moving-company-tauranga",
+  "file": "tag__office-moving-company-tauranga.json",
+  "title": "Office Moving Company Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/office-relocation-tauranga",
+  "file": "tag__office-relocation-tauranga.json",
+  "title": "Office Relocation Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/office-removalists-tauranga",
+  "file": "tag__office-removalists-tauranga.json",
+  "title": "Office Removalists Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/office-removals-tauranga",
+  "file": "tag__office-removals-tauranga.json",
+  "title": "Office Removals Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/pack-and-ship-services-tauranga",
+  "file": "tag__pack-and-ship-services-tauranga.json",
+  "title": "Pack and Ship Services Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/packers-movers-near-me",
+  "file": "tag__packers-movers-near-me.json",
+  "title": "Packers & Movers Near Me Archives - National Movers"
+ },
+ {
+  "route": "tag/packing-and-moving-company",
+  "file": "tag__packing-and-moving-company.json",
+  "title": "Packing and Moving Company Archives - National Movers"
+ },
+ {
+  "route": "tag/packing-company-near-me",
+  "file": "tag__packing-company-near-me.json",
+  "title": "Packing Company Near Me Archives - National Movers"
+ },
+ {
+  "route": "tag/packing-company-tauranga",
+  "file": "tag__packing-company-tauranga.json",
+  "title": "Packing Company Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/packing-services-tauranga",
+  "file": "tag__packing-services-tauranga.json",
+  "title": "Packing Services Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/piano-moving-company-tauranga",
+  "file": "tag__piano-moving-company-tauranga.json",
+  "title": "Piano Moving Company Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/piano-removal-specialists-tauranga",
+  "file": "tag__piano-removal-specialists-tauranga.json",
+  "title": "Piano Removal Specialists Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/residential-move-tauranga",
+  "file": "tag__residential-move-tauranga.json",
+  "title": "Residential Move Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tag/residential-movers-tauranga",
+  "file": "tag__residential-movers-tauranga.json",
+  "title": "Residential Movers Tauranga Archives - National Movers"
+ },
+ {
+  "route": "tauranga-movers",
+  "file": "tauranga-movers.json",
+  "title": "Movers Tauranga | Moving Services | National Movers"
+ },
+ {
+  "route": "thames-movers",
+  "file": "thames-movers.json",
+  "title": "Moving Company | Movers Thames | National Movers"
+ },
+ {
+  "route": "top-challenges-in-commercial-moving-and-how-to-avoid-them",
+  "file": "top-challenges-in-commercial-moving-and-how-to-avoid-them.json",
+  "title": "Top Challenges in Commercial Moving and How to Avoid Them"
+ },
+ {
+  "route": "two-men-and-a-van-tauranga",
+  "file": "two-men-and-a-van-tauranga.json",
+  "title": "Two Men And A Van Service in New Zealand | National Movers"
+ },
+ {
+  "route": "urban-to-suburb-moves-how-home-movers-make-relocation-stress-free",
+  "file": "urban-to-suburb-moves-how-home-movers-make-relocation-stress-free.json",
+  "title": "Stress-Free Urban-to-Suburb Moving"
+ },
+ {
+  "route": "weekend-vs-weekday-office-moves-which-option-is-better-for-businesses",
+  "file": "weekend-vs-weekday-office-moves-which-option-is-better-for-businesses.json",
+  "title": "Weekend vs Weekday Office Moves."
+ },
+ {
+  "route": "wellington-movers",
+  "file": "wellington-movers.json",
+  "title": "Moving Company | Movers Wellington | National Movers"
+ },
+ {
+  "route": "why-you-should-use-protective-padding-when-moving-furniture",
+  "file": "why-you-should-use-protective-padding-when-moving-furniture.json",
+  "title": "Protecting Furniture During a Move"
+ }
+]

@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-h: 80px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-ink font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-extrabold text-ink-strong;
+    line-height: 1.15;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
+  }
+
+  /* Primary yellow pill button — matches the theme skincolor CTA. */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-bold uppercase tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/60;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-ink-strong shadow-soft hover:bg-brand-light hover:-translate-y-0.5;
+  }
+  .btn-dark {
+    @apply btn bg-brand-dark text-white hover:bg-ink-strong hover:-translate-y-0.5;
+  }
+  .btn-outline {
+    @apply btn border-2 border-brand bg-transparent text-ink-strong hover:bg-brand;
+  }
+
+  .eyebrow {
+    @apply mb-3 inline-block text-sm font-extrabold uppercase tracking-[0.18em] text-ink-strong;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply mr-2 inline-block h-[3px] w-8 -translate-y-1 bg-brand align-middle;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl font-extrabold leading-tight text-ink-strong md:text-[2.6rem];
+  }
+
+  /* Rich-text article styling for content-block driven pages. */
+  .prose-nm {
+    @apply text-[1.02rem] leading-relaxed text-ink-soft;
+  }
+  .prose-nm h2 {
+    @apply mt-10 mb-4 text-2xl font-extrabold text-ink-strong md:text-3xl;
+  }
+  .prose-nm h3 {
+    @apply mt-8 mb-3 text-xl font-bold text-ink-strong;
+  }
+  .prose-nm p {
+    @apply mb-5;
+  }
+  .prose-nm ul {
+    @apply mb-6 space-y-2 pl-1;
+  }
+  .prose-nm ul li {
+    @apply relative pl-7;
+  }
+  .prose-nm ul li::before {
+    content: "";
+    @apply absolute left-0 top-2 h-3.5 w-3.5 rounded-full border-2 border-brand bg-brand/30;
+  }
+  .prose-nm ol {
+    @apply mb-6 list-decimal space-y-2 pl-6 marker:font-bold marker:text-brand-dark;
+  }
+}
