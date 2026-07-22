@@ -21,9 +21,10 @@ export default function BlogPage() {
   return (
     <>
       <TitleBar
-        title="Moving Tips & Insights"
-        subtitle="Expert advice to help you plan a smoother, smarter move."
+        title="Blog"
         crumbs={[{ label: "Blog" }]}
+        image="/wp-content/uploads/elementor/thumbs/title-bar-new.webp"
+        showImage
       />
 
       <section className="section">

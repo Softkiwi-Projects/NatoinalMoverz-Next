@@ -25,7 +25,12 @@ export default function PostTemplate({ post }) {
 
   return (
     <>
-      <TitleBar title="Blog" crumbs={[{ label: "Blog", href: "/blog" }, { label: category?.name || "Article" }]} />
+      <TitleBar
+        title="Blog"
+        crumbs={[{ label: "Blog", href: "/blog" }, { label: category?.name || "Article" }]}
+        image="/wp-content/uploads/elementor/thumbs/title-bar-new.webp"
+        showImage
+      />
 
       <section className="section">
         <div className="container-page grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px]">

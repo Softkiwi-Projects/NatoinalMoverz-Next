@@ -3,19 +3,32 @@ import Icon from "@/components/ui/Icon";
 
 // Page hero/breadcrumb band shown at the top of interior pages —
 // mirrors the theme's dark title bar.
-export default function TitleBar({ title, subtitle, crumbs = [] }) {
+export default function TitleBar({
+  title,
+  subtitle,
+  crumbs = [],
+  image = "/wp-content/uploads/2023/10/bg-new-03-1.jpg",
+  // When a page supplies its own banner image, show it prominently rather
+  // than as a faint texture behind the dark fill.
+  showImage = false,
+}) {
   return (
     <section className="relative overflow-hidden bg-brand-dark text-white">
       <div
-        className="absolute inset-0 opacity-20"
+        className={`absolute inset-0 ${showImage ? "opacity-100" : "opacity-20"}`}
         style={{
-          backgroundImage:
-            "url(/wp-content/uploads/2023/10/bg-new-03-1.jpg)",
+          backgroundImage: `url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-dark/70" />
+      <div
+        className={`absolute inset-0 ${
+          showImage
+            ? "bg-gradient-to-r from-brand-dark/85 via-brand-dark/60 to-brand-dark/30"
+            : "bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-dark/70"
+        }`}
+      />
       <div className="container-page relative py-16 md:py-20">
         <nav className="mb-3 flex flex-wrap items-center gap-2 text-sm text-white/70">
           <Link href="/" className="hover:text-brand">

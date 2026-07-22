@@ -30,7 +30,10 @@ export default function QuoteForm({ variant = "card" }) {
   // brand-yellow card (the restyled Service Template hero). Behaves like
   // "hero" layout-wise (placeholders instead of labels, grid rows).
   const yellow = variant === "yellow";
-  const hero = variant === "hero" || yellow;
+  // "light" = white pill fields on a light/grey background (the quote-form
+  // hero). Same layout as hero, but a grey progress track + dark fill/buttons.
+  const light = variant === "light";
+  const hero = variant === "hero" || yellow || light;
   // "panel" = card-style fields but no self-wrapping card (parent provides it).
   const wrapperCls = variant === "card" ? "rounded-2xl bg-white p-8 shadow-card" : "";
   const [step, setStep] = useState(1);
@@ -47,7 +50,11 @@ export default function QuoteForm({ variant = "card" }) {
   };
 
   const inputCls = hero
-    ? `w-full rounded-full border-0 bg-white px-6 py-3.5 text-ink placeholder:text-ink-soft/70 focus:outline-none focus:ring-2 ${yellow ? "shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] focus:ring-brand-dark/50" : "focus:ring-brand"}`
+    ? `w-full rounded-full border-0 bg-white px-6 py-3.5 text-ink placeholder:text-ink-soft/70 focus:outline-none focus:ring-2 ${
+        yellow || light
+          ? "shadow-[0_2px_10px_-4px_rgba(20,33,42,0.25)] focus:ring-brand-dark/40"
+          : "focus:ring-brand"
+      }`
     : "w-full rounded-lg border border-surface-border bg-white px-4 py-3 text-ink focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30";
 
   if (submitted) {
@@ -87,12 +94,12 @@ export default function QuoteForm({ variant = "card" }) {
       <div className="mb-5">
         <div
           className={`relative h-7 overflow-hidden rounded-full ${
-            yellow ? "bg-black/10" : hero ? "bg-white/40" : "bg-surface-light"
+            yellow ? "bg-black/10" : light ? "bg-surface-light" : hero ? "bg-white/40" : "bg-surface-light"
           }`}
         >
           <div
             className={`flex h-full items-center justify-end rounded-full pr-3 text-xs font-extrabold transition-all duration-300 ${
-              yellow ? "bg-brand-dark text-white" : "bg-brand text-ink-strong"
+              yellow || light ? "bg-brand-dark text-white" : "bg-brand text-ink-strong"
             }`}
             style={{ width: `${pct}%` }}
           >
@@ -131,7 +138,7 @@ export default function QuoteForm({ variant = "card" }) {
               </select>
             </div>
             {hero && (
-              <button type="submit" className={`${yellow ? "btn-dark" : "btn-primary"} w-full`}>
+              <button type="submit" className={`${yellow || light ? "btn-dark" : "btn-primary"} w-full`}>
                 Request A Quote
               </button>
             )}
@@ -144,7 +151,7 @@ export default function QuoteForm({ variant = "card" }) {
             <button
               type="button"
               onClick={back}
-              className={yellow ? "btn border-2 border-brand-dark bg-transparent text-brand-dark hover:bg-brand-dark hover:text-white" : hero ? "btn-dark" : "btn-outline flex-1"}
+              className={yellow || light ? "btn border-2 border-brand-dark bg-transparent text-brand-dark hover:bg-brand-dark hover:text-white" : hero ? "btn-dark" : "btn-outline flex-1"}
             >
               Previous
             </button>
@@ -153,7 +160,7 @@ export default function QuoteForm({ variant = "card" }) {
             <button
               type="button"
               onClick={next}
-              className={yellow ? "btn-dark px-10" : hero ? "btn-primary px-10" : "btn-primary flex-1"}
+              className={yellow || light ? "btn-dark px-10" : hero ? "btn-primary px-10" : "btn-primary flex-1"}
             >
               Next
             </button>
