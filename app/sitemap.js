@@ -3,6 +3,8 @@ import { serviceSlugs } from "@/data/services";
 import { citySlugs } from "@/data/cities";
 import { getAllPosts, getCategories, getTags } from "@/lib/content";
 
+export const dynamic = "force-static";
+
 export default function sitemap() {
   const base = site.url;
   const staticRoutes = ["", "about-us", "contacts", "quote-form", "blog"];
