@@ -1,4 +1,4 @@
-import { Nunito, Nunito_Sans, Biryani } from "next/font/google";
+import { Nunito, Nunito_Sans, Biryani, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { site } from "@/data/site";
 import Header from "@/components/layout/Header";
@@ -25,6 +25,14 @@ const biryani = Biryani({
   display: "swap",
 });
 
+// Homepage typeface (bdsmovers.co.nz look & feel).
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
+
 export const metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -47,7 +55,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en-NZ"
-      className={`${nunito.variable} ${nunitoSans.variable} ${biryani.variable}`}
+      className={`${nunito.variable} ${nunitoSans.variable} ${biryani.variable} ${jakarta.variable}`}
     >
       <body className="flex min-h-screen flex-col">
         <Header />

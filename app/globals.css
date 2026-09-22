@@ -61,6 +61,43 @@
     @apply font-heading text-3xl font-extrabold leading-tight text-ink-strong md:text-[2.6rem];
   }
 
+  /* ---- Homepage (bdsmovers.co.nz look & feel) ---- */
+  .home-bds {
+    @apply font-jakarta text-gray-700;
+  }
+  .home-bds :is(h1, h2, h3, h4) {
+    @apply font-jakarta;
+  }
+  .container-bds {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .section-bds {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+  .pill-yellow {
+    @apply inline-block rounded-full bg-brand px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-navy;
+  }
+  /* Highlighter-style emphasis for headings on light backgrounds (yellow text
+     would be unreadable on white). */
+  .hl-yellow {
+    @apply px-1;
+    background-image: linear-gradient(transparent 58%, rgba(255, 211, 50, 0.9) 58%);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .h2-bds {
+    @apply text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-navy sm:text-4xl lg:text-5xl;
+  }
+  .btn-yellow {
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-full bg-brand px-7 text-sm font-extrabold tracking-wide text-navy shadow-lg shadow-brand/30 transition hover:bg-brand-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/60;
+  }
+  .btn-glass {
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-7 text-sm font-extrabold tracking-wide text-white backdrop-blur transition hover:bg-white/20;
+  }
+  .btn-navy-outline {
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-navy/15 bg-white px-7 text-sm font-extrabold tracking-wide text-navy transition hover:border-brand hover:bg-brand;
+  }
+
   /* Rich-text article styling for content-block driven pages. */
   .prose-nm {
     @apply text-[1.02rem] leading-relaxed text-ink-soft;

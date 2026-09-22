@@ -1,13 +1,12 @@
-import Hero from "@/components/sections/Hero";
-import FeatureStrip from "@/components/sections/FeatureStrip";
-import ServicesGrid from "@/components/sections/ServicesGrid";
-import WhyChooseUs from "@/components/sections/WhyChooseUs";
-import Stats from "@/components/sections/Stats";
-import QualityFocus from "@/components/sections/QualityFocus";
-import PlanMove from "@/components/sections/PlanMove";
-import BlogGrid from "@/components/sections/BlogGrid";
-import WhyNationalMovers from "@/components/sections/WhyNationalMovers";
-import CTA from "@/components/sections/CTA";
+import HomeHero from "@/components/home/HomeHero";
+import HomeAbout from "@/components/home/HomeAbout";
+import HomeServices from "@/components/home/HomeServices";
+import HomeWhy from "@/components/home/HomeWhy";
+import HomeFeatures from "@/components/home/HomeFeatures";
+import HomeProcess from "@/components/home/HomeProcess";
+import HomeQuality from "@/components/home/HomeQuality";
+import HomeBlog from "@/components/home/HomeBlog";
+import HomeQuoteCta from "@/components/home/HomeQuoteCta";
 import { homeServices } from "@/data/services";
 import { getPageContent, getRecentPosts } from "@/lib/content";
 
@@ -20,20 +19,22 @@ export function generateMetadata() {
   };
 }
 
+// Homepage styled after bdsmovers.co.nz (navy/red palette, Plus Jakarta Sans),
+// using National Movers' own copy. Components live in components/home so the
+// shared section components used by other pages are untouched.
 export default function HomePage() {
   const recent = getRecentPosts(3);
   return (
-    <>
-      <Hero />
-      <FeatureStrip />
-      <ServicesGrid services={homeServices} />
-      <WhyChooseUs />
-      <Stats />
-      <QualityFocus />
-      <PlanMove />
-      <BlogGrid posts={recent} eyebrow="Latest Update" title="Let's Checkout our All **Latest News**" />
-      <WhyNationalMovers />
-      {/* <CTA /> */}
-    </>
+    <div className="home-bds">
+      <HomeHero />
+      <HomeAbout />
+      <HomeServices services={homeServices} />
+      <HomeWhy />
+      <HomeFeatures />
+      <HomeProcess />
+      <HomeQuality />
+      <HomeBlog posts={recent} />
+      <HomeQuoteCta />
+    </div>
   );
 }

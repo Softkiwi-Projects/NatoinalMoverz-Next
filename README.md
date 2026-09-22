@@ -15,6 +15,24 @@ npm run build    # production build
 npm start        # serve the production build
 ```
 
+## Quote form email
+
+`components/sections/QuoteForm.jsx` submits to [Web3Forms](https://web3forms.com),
+which emails the request to `info@nationalmovers.co.nz`. Because the site is a
+static export (`output: "export"`) there is no API route — the browser POSTs
+directly to Web3Forms.
+
+```bash
+cp .env.example .env.local     # then paste your access key
+```
+
+The key is `NEXT_PUBLIC_*`, so it is **inlined at build time** — re-run
+`npm run build` after changing it. Without a key the form shows a "not
+configured" message instead of silently discarding the lead.
+
+Free tier is 250 submissions/month. A hidden `botcheck` honeypot field filters
+automated spam.
+
 ## Architecture
 
 ```

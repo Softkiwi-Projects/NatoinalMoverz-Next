@@ -11,7 +11,7 @@ const defaultStats = [
 ];
 
 // Fires once when the element scrolls into view.
-function useInView(ref, threshold = 0.35) {
+export function useInView(ref, threshold = 0.35) {
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
@@ -33,7 +33,7 @@ function useInView(ref, threshold = 0.35) {
 
 // Counts from 0 to the numeric part of `value` when `run` becomes true,
 // preserving any prefix/suffix (e.g. "1200+", "95%").
-function Counter({ value, run, duration = 1800 }) {
+export function Counter({ value, run, duration = 1800 }) {
   // Parse once per value so the reference is stable across re-renders.
   const { prefix, target, suffix, numeric } = useMemo(() => {
     const m = String(value).match(/^(\D*)(\d[\d,]*)(.*)$/);

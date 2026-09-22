@@ -12,6 +12,7 @@ module.exports = {
         brand: {
           DEFAULT: "#ffd332", // --skincolor
           light: "#ffdc39", // active link
+          hover: "#f5c518", // homepage button hover
           dark: "#14212a", // --skincolor-dark
         },
         ink: {
@@ -25,12 +26,19 @@ module.exports = {
           border: "#ededed",
         },
         topbar: "#1b2024",
+        // Homepage palette (bdsmovers.co.nz look & feel).
+        navy: "#0b1f4d",
+        soft: "#f8fafc",
+        night: "#0a0a0a",
+        star: "#facc15",
+        success: "#16a34a",
         // --themestek-moversco-dropmenu-active-link-custom-color
         dropdownActive: "#3368c6",
       },
       fontFamily: {
         sans: ["var(--font-nunito)", "system-ui", "sans-serif"],
         heading: ["var(--font-nunito-sans)", "system-ui", "sans-serif"],
+        jakarta: ["var(--font-jakarta)", "system-ui", "sans-serif"],
         menu: ["var(--font-biryani)", "var(--font-nunito-sans)", "sans-serif"],
         // --themestek-moversco-dropdownmenufont-family
         dropdown: ["Roboto", "Arial", "Helvetica", "sans-serif"],
