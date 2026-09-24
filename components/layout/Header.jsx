@@ -143,9 +143,11 @@ export default function Header() {
           {/* CTA block — solid yellow, at the container's right edge */}
           <Link
             href="/quote-form"
-            className="hidden shrink-0 items-center bg-brand px-9 text-sm font-extrabold uppercase tracking-wide text-ink-strong transition-colors hover:bg-brand-light sm:flex h-[60px]"
+            data-quote-cta="true"
+            className="btn-quote-cta hidden shrink-0 items-center gap-2 bg-brand px-8 text-sm font-extrabold uppercase tracking-wide text-ink-strong transition-colors hover:bg-brand-light sm:flex h-[60px]"
           >
-            Get a free quote
+            <span>Get a free quote</span>
+            <Icon name="arrow" size={15} strokeWidth={2.5} />
           </Link>
 
           <button

@@ -19,7 +19,7 @@ export default function FloatingQuoteTab() {
       </a>
       <Link
         href="/quote-form"
-        className="flex h-36 w-14 items-center justify-center overflow-hidden bg-brand text-ink-strong transition-colors hover:bg-brand-light"
+        className="no-sweep flex h-36 w-14 items-center justify-center overflow-hidden bg-brand text-ink-strong transition-colors hover:bg-brand-light"
       >
         <span className="whitespace-nowrap text-xs font-extrabold uppercase tracking-wide [transform:rotate(-90deg)]">
           Get free Quote

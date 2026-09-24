@@ -29,6 +29,6 @@ export const site = {
     { name: "LinkedIn", href: "https://www.linkedin.com/", icon: "linkedin" },
     { name: "Instagram", href: "https://www.instagram.com/", icon: "instagram" },
   ],
-  managedBy: "NZ IT FIRM",
+  managedBy: "Softkiwi Technologies",
   copyrightStart: 2025,
 };

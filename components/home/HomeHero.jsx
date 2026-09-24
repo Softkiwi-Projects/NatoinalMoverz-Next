@@ -27,21 +27,33 @@ export default function HomeHero() {
       <div className="container-bds relative py-14 lg:py-20">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_460px]">
           <div>
-            <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm backdrop-blur">
+            <span
+              data-hero-element="badge"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm backdrop-blur"
+            >
               <Icon name="truck" size={16} className="text-brand" />
               <span className="font-bold text-white">{site.name}</span>
               <span className="hidden text-white/70 sm:inline">· {site.tagline}</span>
             </span>
 
-            <h1 className="text-balance text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1
+              data-hero-element="heading"
+              className="text-balance text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl"
+            >
               Effortless Moving <span className="mt-1 block text-white/90">with <span className="text-brand">Trusted Experts</span></span>
             </h1>
-            <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-white/80">
+            <p
+              data-hero-element="copy"
+              className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-white/80"
+            >
               Moving can be overwhelming, but the right movers make it easy. National Movers offers reliable,
               professional services tailored to your needs for a hassle-free move.
             </p>
 
-            <ul className="mt-6 max-w-xl space-y-2.5">
+            <ul
+              data-hero-element="bullets"
+              className="mt-6 max-w-xl space-y-2.5"
+            >
               {bullets.map((b) => (
                 <li key={b} className="flex items-center gap-2.5">
                   <CheckDot />
@@ -50,9 +62,17 @@ export default function HomeHero() {
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/quote-form" className="btn-yellow h-14 px-8 text-base">
-                Get a Free Quote
+            <div
+              data-hero-element="actions"
+              className="mt-8 flex flex-wrap gap-3"
+            >
+              <Link
+                href="/quote-form"
+                data-quote-cta="true"
+                className="btn-yellow btn-quote-cta h-14 px-8 text-base inline-flex items-center gap-2.5"
+              >
+                <span>Get a Free Quote</span>
+                <Icon name="arrow" size={17} strokeWidth={2.5} />
               </Link>
               <a href={site.phone.href} className="btn-glass h-14 px-8 text-base">
                 <Icon name="phone" size={18} /> Call Now
@@ -60,7 +80,9 @@ export default function HomeHero() {
             </div>
           </div>
 
-          <QuoteCard />
+          <div data-hero-element="quote-card">
+            <QuoteCard />
+          </div>
         </div>
       </div>
     </section>

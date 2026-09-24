@@ -98,6 +98,60 @@
     @apply inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-navy/15 bg-white px-7 text-sm font-extrabold tracking-wide text-navy transition hover:border-brand hover:bg-brand;
   }
 
+  /* ======================================================== */
+  /* PREMIUM TRANSLUCENT LIGHT-SWEEP (400-600ms)              */
+  /* Non-metallic, non-glossy, purely flat yellow highlight   */
+  /* ======================================================== */
+  .btn-primary,
+  .btn-yellow,
+  .btn-quote-cta,
+  a[href="/quote-form"]:not(.no-sweep) {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .btn-primary::after,
+  .btn-yellow::after,
+  .btn-quote-cta::after,
+  a[href="/quote-form"]:not(.no-sweep)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.22) 50%,
+      transparent 100%
+    );
+    transform: translate3d(-160%, 0, 0) skewX(-20deg);
+    pointer-events: none;
+    z-index: 1;
+    transition: none; /* Instant reset on mouse leave: no reverse sweep */
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover::after,
+    .btn-yellow:hover::after,
+    .btn-quote-cta:hover::after,
+    a[href="/quote-form"]:not(.no-sweep):hover::after {
+      transform: translate3d(260%, 0, 0) skewX(-20deg);
+      transition: transform 520ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary::after,
+    .btn-yellow::after,
+    .btn-quote-cta::after,
+    a[href="/quote-form"]::after {
+      display: none !important;
+    }
+  }
+
   /* Rich-text article styling for content-block driven pages. */
   .prose-nm {
     @apply text-[1.02rem] leading-relaxed text-ink-soft;

@@ -23,13 +23,18 @@ export default function QuoteFormPage() {
       <section className="bg-surface-light">
         <div className="container-page grid items-center gap-8 pt-12 md:pt-16 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
           <div className="pb-12 md:pb-16">
-            <span className="mb-3 block text-sm font-extrabold uppercase tracking-[0.2em] text-ink-strong">
+            <span className="quote-stagger-subtitle mb-3 block text-sm font-extrabold uppercase tracking-[0.2em] text-ink-strong">
               Request a Free Quote
             </span>
-            <h1 className="mb-8 font-heading text-3xl font-extrabold leading-tight text-ink-strong md:text-[2.7rem]">
-              Getting Movers and Packers Quotes is Easy
+            <h1 className="quote-stagger-title mb-4 font-heading text-3xl font-extrabold leading-tight text-ink-strong md:text-[2.7rem]">
+              Get Your Free Quote
             </h1>
-            <QuoteForm variant="light" />
+            <p className="quote-stagger-subtitle mb-8 text-base text-ink-soft max-w-xl">
+              Tell us about your upcoming move and our team will get in touch shortly with a tailored estimate.
+            </p>
+            <div className="quote-stagger-form">
+              <QuoteForm variant="light" />
+            </div>
           </div>
 
           {/* Figure — flush with the section's bottom edge */}

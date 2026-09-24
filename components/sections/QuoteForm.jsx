@@ -4,13 +4,9 @@ import { useRef, useState } from "react";
 import Icon from "@/components/ui/Icon";
 import { site } from "@/data/site";
 
-// Web3Forms access key. Set NEXT_PUBLIC_WEB3FORMS_KEY in .env.local (see
-// .env.example). It is a publishable, write-only key — it can only push
-// submissions to the inbox it was registered against, so shipping it in the
-// client bundle is by design. That also keeps the site a pure static export:
-// the browser POSTs straight to Web3Forms, no server of ours involved.
-const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-const ENDPOINT = "https://api.web3forms.com/submit";
+// Backend API endpoint for contact and quote submissions (Google SMTP + Rate Limiting)
+const BACKEND_API_URL = process.env.NEXT_PUBLIC_CONTACT_API_URL || "http://localhost:5000/api/contact";
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
 const moveTypes = [
   "1 Bedroom",
@@ -71,45 +67,97 @@ export default function QuoteForm({ variant = "card" }) {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (sending) return;
+
     // Honeypot: invisible to people, irresistible to bots. Show the normal
     // success screen without sending, so the bot gets no signal it was caught.
     if (botRef.current?.checked) {
       setSubmitted(true);
       return;
     }
-    if (!ACCESS_KEY) {
-      setError(`This form isn't configured yet. Please call us on ${site.phone.label}.`);
-      return;
-    }
 
     setSending(true);
     setError("");
+
+    // Quote details formatted into message body for email notification
+    const formattedMessage = [
+      `Move Type: ${data.moveType}`,
+      `Pickup Date: ${data.date || "Not specified"}`,
+      `Pickup Address: ${data.pickup || "Not specified"}`,
+      `Drop-off Address: ${data.dropoff || "Not specified"}`,
+    ].join("\n");
+
+    const payload = {
+      name: data.name || "Customer",
+      email: data.email,
+      phone: data.phone || null,
+      message: formattedMessage,
+      moveType: data.moveType,
+      date: data.date,
+      pickup: data.pickup,
+      dropoff: data.dropoff,
+      botcheck: false,
+    };
+
     try {
-      const res = await fetch(ENDPOINT, {
+      const res = await fetch(BACKEND_API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: ACCESS_KEY,
-          subject: `New quote request — ${data.moveType}`,
-          from_name: `${site.name} website`,
-          replyto: data.email,
-          Name: data.name || "Not provided",
-          Email: data.email,
-          Phone: data.phone,
-          "Move type": data.moveType,
-          "Pickup date": data.date,
-          "Pickup address": data.pickup,
-          "Drop-off address": data.dropoff,
-        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
       });
+
       const result = await res.json().catch(() => ({}));
-      if (!res.ok || !result.success) {
-        throw new Error(result.message || `Request failed (${res.status})`);
+
+      if (res.status === 429) {
+        throw new Error(result.error || "Too many requests. Please wait a few minutes before trying again.");
       }
+
+      if (!res.ok || !result.success) {
+        const errMsg =
+          result.error ||
+          result.message ||
+          (result.details && result.details[0]?.message) ||
+          `Request failed (${res.status})`;
+        throw new Error(errMsg);
+      }
+
       setSubmitted(true);
-    } catch {
+    } catch (err) {
+      // Optional fallback to Web3Forms if backend is not reachable and web3forms key is configured
+      if (WEB3FORMS_KEY && err.message?.includes("fetch")) {
+        try {
+          const fallbackRes = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({
+              access_key: WEB3FORMS_KEY,
+              subject: `New quote request — ${data.moveType}`,
+              from_name: `${site.name} website`,
+              replyto: data.email,
+              Name: data.name || "Not provided",
+              Email: data.email,
+              Phone: data.phone,
+              "Move type": data.moveType,
+              "Pickup date": data.date,
+              "Pickup address": data.pickup,
+              "Drop-off address": data.dropoff,
+            }),
+          });
+          const fbResult = await fallbackRes.json().catch(() => ({}));
+          if (fallbackRes.ok && fbResult.success) {
+            setSubmitted(true);
+            return;
+          }
+        } catch {
+          // Fall through to display original error
+        }
+      }
+
       setError(
-        `Sorry — we couldn't send your request just now. Please try again, or call us on ${site.phone.label}.`
+        err.message ||
+          `Sorry — we couldn't send your request just now. Please try again, or call us on ${site.phone.label}.`
       );
     } finally {
       setSending(false);

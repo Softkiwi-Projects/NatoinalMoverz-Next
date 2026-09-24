@@ -7,6 +7,7 @@ import HomeProcess from "@/components/home/HomeProcess";
 import HomeQuality from "@/components/home/HomeQuality";
 import HomeBlog from "@/components/home/HomeBlog";
 import HomeQuoteCta from "@/components/home/HomeQuoteCta";
+import SplashTransition from "@/components/intro/SplashTransition";
 import { homeServices } from "@/data/services";
 import { getPageContent, getRecentPosts } from "@/lib/content";
 
@@ -25,16 +26,18 @@ export function generateMetadata() {
 export default function HomePage() {
   const recent = getRecentPosts(3);
   return (
-    <div className="home-bds">
-      <HomeHero />
-      <HomeAbout />
-      <HomeServices services={homeServices} />
-      <HomeWhy />
-      <HomeFeatures />
-      <HomeProcess />
-      <HomeQuality />
-      <HomeBlog posts={recent} />
-      <HomeQuoteCta />
-    </div>
+    <SplashTransition>
+      <div className="home-bds">
+        <HomeHero />
+        <HomeAbout />
+        <HomeServices services={homeServices} />
+        <HomeWhy />
+        <HomeFeatures />
+        <HomeProcess />
+        <HomeQuality />
+        <HomeBlog posts={recent} />
+        <HomeQuoteCta />
+      </div>
+    </SplashTransition>
   );
 }

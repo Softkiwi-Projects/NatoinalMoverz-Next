@@ -51,6 +51,8 @@ export const metadata = {
   },
 };
 
+import QuoteJourneyProvider from "@/components/quote-journey/QuoteJourneyProvider";
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -58,11 +60,13 @@ export default function RootLayout({ children }) {
       className={`${nunito.variable} ${nunitoSans.variable} ${biryani.variable} ${jakarta.variable}`}
     >
       <body className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <BackToTop />
-        <FloatingQuoteTab />
+        <QuoteJourneyProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <BackToTop />
+          <FloatingQuoteTab />
+        </QuoteJourneyProvider>
       </body>
     </html>
   );

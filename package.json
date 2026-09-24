@@ -7,7 +7,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server": "npm --prefix backend start",
+    "server:dev": "npm --prefix backend run dev",
+    "server:test": "npm --prefix backend test",
+    "server:verify-smtp": "npm --prefix backend run verify-smtp"
   },
   "dependencies": {
     "next": "^15.3.3",
