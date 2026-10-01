@@ -1,3 +1,7 @@
+import dns from "dns";
+// Resolve IPv4 before IPv6 to prevent connection timeouts in Render/cloud container networks
+dns.setDefaultResultOrder("ipv4first");
+
 import nodemailer from "nodemailer";
 import { config, validateConfig } from "./config.js";
 import { logger } from "./logger.js";
@@ -7,18 +11,47 @@ let transporter = null;
 
 /**
  * Initializes and returns the Nodemailer SMTP transporter.
+ * Supports built-in Gmail service mode as well as custom host/port/TLS.
  */
 export function getTransporter() {
   if (!transporter) {
-    transporter = nodemailer.createTransport({
-      host: config.smtp.host,
-      port: config.smtp.port,
-      secure: config.smtp.secure, // true for 465, false for 587
-      auth: {
-        user: config.smtp.auth.user,
-        pass: config.smtp.auth.pass,
-      },
-    });
+    const isGmail = config.smtp.service === "gmail" || config.smtp.host === "smtp.gmail.com";
+
+    const baseAuth = {
+      user: config.smtp.auth.user,
+      pass: config.smtp.auth.pass,
+    };
+
+    let transportOptions;
+
+    if (isGmail) {
+      // Use Nodemailer's built-in Gmail preset with sensible timeouts
+      transportOptions = {
+        service: "gmail",
+        auth: baseAuth,
+        connectionTimeout: 15000,
+        greetingTimeout: 15000,
+        socketTimeout: 20000,
+        tls: {
+          rejectUnauthorized: false,
+        },
+      };
+    } else {
+      transportOptions = {
+        host: config.smtp.host,
+        port: config.smtp.port,
+        secure: config.smtp.secure, // true for 465, false for 587
+        auth: baseAuth,
+        connectionTimeout: 15000,
+        greetingTimeout: 15000,
+        socketTimeout: 20000,
+        tls: {
+          rejectUnauthorized: false,
+        },
+      };
+    }
+
+    transporter = nodemailer.createTransport(transportOptions);
   }
   return transporter;
 }

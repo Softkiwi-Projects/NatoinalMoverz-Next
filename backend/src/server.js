@@ -1,3 +1,7 @@
+import dns from "dns";
+// Resolve IPv4 before IPv6 to avoid connection timeouts in cloud/container environments (Render, AWS, Docker)
+dns.setDefaultResultOrder("ipv4first");
+
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";

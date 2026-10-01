@@ -27,11 +27,12 @@ export const config = {
   },
 
   smtp: {
+    service: process.env.SMTP_SERVICE || (process.env.SMTP_HOST === "smtp.gmail.com" || !process.env.SMTP_HOST ? "gmail" : undefined),
     host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: parseInt(process.env.SMTP_PORT, 10) || 465,
+    port: parseInt(process.env.SMTP_PORT, 10) || 587,
     secure: process.env.SMTP_SECURE !== undefined 
       ? process.env.SMTP_SECURE === "true" 
-      : (parseInt(process.env.SMTP_PORT, 10) || 465) === 465,
+      : (parseInt(process.env.SMTP_PORT, 10) || 587) === 465,
     auth: {
       user: process.env.SMTP_USER || "",
       pass: (process.env.SMTP_PASS || "").replace(/\s+/g, ""), // clean accidental spaces from 16-char app pass

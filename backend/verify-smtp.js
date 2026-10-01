@@ -4,6 +4,9 @@
  * Usage: node verify-smtp.js
  */
 
+import dns from "dns";
+dns.setDefaultResultOrder("ipv4first");
+
 import nodemailer from "nodemailer";
 import { config, validateConfig } from "./src/config.js";
 
@@ -22,22 +25,42 @@ async function verifyCredentials() {
   }
 
   console.log("Configuration detected:");
-  console.log(`  - SMTP Host: ${config.smtp.host}`);
-  console.log(`  - SMTP Port: ${config.smtp.port} (${config.smtp.secure ? "SSL" : "TLS"})`);
-  console.log(`  - User:      ${config.smtp.auth.user}`);
-  console.log(`  - Password:  ${config.smtp.auth.pass ? "****** (16-character App Password set)" : "NOT SET"}`);
-  console.log(`  - Target To: ${config.mail.to}`);
-  console.log("\nConnecting to Google SMTP servers...");
+  console.log(`  - SMTP Host:    ${config.smtp.host}`);
+  console.log(`  - SMTP Port:    ${config.smtp.port} (${config.smtp.secure ? "SSL" : "TLS"})`);
+  console.log(`  - SMTP Service: ${config.smtp.service || "custom"}`);
+  console.log(`  - User:         ${config.smtp.auth.user}`);
+  console.log(`  - Password:     ${config.smtp.auth.pass ? "****** (16-character App Password set)" : "NOT SET"}`);
+  console.log(`  - Target To:    ${config.mail.to}`);
+  console.log("\nConnecting to Google SMTP servers (IPv4 first)...");
 
-  const transporter = nodemailer.createTransport({
-    host: config.smtp.host,
-    port: config.smtp.port,
-    secure: config.smtp.secure,
-    auth: {
-      user: config.smtp.auth.user,
-      pass: config.smtp.auth.pass,
-    },
-  });
+  const isGmail = config.smtp.service === "gmail" || config.smtp.host === "smtp.gmail.com";
+  const transporter = nodemailer.createTransport(
+    isGmail
+      ? {
+          service: "gmail",
+          auth: {
+            user: config.smtp.auth.user,
+            pass: config.smtp.auth.pass,
+          },
+          connectionTimeout: 15000,
+          greetingTimeout: 15000,
+          socketTimeout: 20000,
+          tls: { rejectUnauthorized: false },
+        }
+      : {
+          host: config.smtp.host,
+          port: config.smtp.port,
+          secure: config.smtp.secure,
+          auth: {
+            user: config.smtp.auth.user,
+            pass: config.smtp.auth.pass,
+          },
+          connectionTimeout: 15000,
+          greetingTimeout: 15000,
+          socketTimeout: 20000,
+          tls: { rejectUnauthorized: false },
+        }
+  );
 
   try {
     await transporter.verify();
