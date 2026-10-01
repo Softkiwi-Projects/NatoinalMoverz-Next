@@ -5,7 +5,7 @@ export const site = {
   tagline: "New Zealand's Trusted Moving Company",
   description:
     "National Movers is New Zealand's leading delivery, packing, and moving company. We specialise in seamless house moving, packing, and storage services.",
-  url: "https://nationalmovers.co.nz",
+  url: (process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "https://natoinalmoverz-next.onrender.com").replace(/\/+$/, ""),
   logo: "/wp-content/uploads/2025/03/National-Movers-2.png",
   favicon: "/wp-content/uploads/2025/03/cropped-National-Movers-2-32x32.png",
   appleIcon: "/wp-content/uploads/2025/03/cropped-National-Movers-2-180x180.png",
