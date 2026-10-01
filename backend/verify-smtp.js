@@ -4,8 +4,25 @@
  * Usage: node verify-smtp.js
  */
 
+import os from "os";
 import dns from "dns";
+
+// Render container networks do not have outbound IPv6 routing.
+// Force IPv4 DNS resolution and filter network interfaces so Nodemailer only connects via IPv4.
 dns.setDefaultResultOrder("ipv4first");
+try {
+  const origInterfaces = os.networkInterfaces;
+  os.networkInterfaces = () => {
+    const ifaces = origInterfaces();
+    const ipv4Only = {};
+    for (const [name, addrs] of Object.entries(ifaces)) {
+      ipv4Only[name] = (addrs || []).filter((a) => a.family === "IPv4" || a.family === 4);
+    }
+    return ipv4Only;
+  };
+} catch {
+  // Ignore
+}
 
 import nodemailer from "nodemailer";
 import { config, validateConfig } from "./src/config.js";
@@ -24,43 +41,31 @@ async function verifyCredentials() {
     process.exit(1);
   }
 
+  const port = config.smtp.port || 587;
+  const isDirectSsl = port === 465 || config.smtp.secure === true;
+
   console.log("Configuration detected:");
   console.log(`  - SMTP Host:    ${config.smtp.host}`);
-  console.log(`  - SMTP Port:    ${config.smtp.port} (${config.smtp.secure ? "SSL" : "TLS"})`);
-  console.log(`  - SMTP Service: ${config.smtp.service || "custom"}`);
+  console.log(`  - SMTP Port:    ${port} (${isDirectSsl ? "SSL" : "TLS/STARTTLS"})`);
   console.log(`  - User:         ${config.smtp.auth.user}`);
   console.log(`  - Password:     ${config.smtp.auth.pass ? "****** (16-character App Password set)" : "NOT SET"}`);
   console.log(`  - Target To:    ${config.mail.to}`);
-  console.log("\nConnecting to Google SMTP servers (IPv4 first)...");
+  console.log("\nConnecting to Google SMTP servers (IPv4 only)...");
 
-  const isGmail = config.smtp.service === "gmail" || config.smtp.host === "smtp.gmail.com";
-  const transporter = nodemailer.createTransport(
-    isGmail
-      ? {
-          service: "gmail",
-          auth: {
-            user: config.smtp.auth.user,
-            pass: config.smtp.auth.pass,
-          },
-          connectionTimeout: 15000,
-          greetingTimeout: 15000,
-          socketTimeout: 20000,
-          tls: { rejectUnauthorized: false },
-        }
-      : {
-          host: config.smtp.host,
-          port: config.smtp.port,
-          secure: config.smtp.secure,
-          auth: {
-            user: config.smtp.auth.user,
-            pass: config.smtp.auth.pass,
-          },
-          connectionTimeout: 15000,
-          greetingTimeout: 15000,
-          socketTimeout: 20000,
-          tls: { rejectUnauthorized: false },
-        }
-  );
+  const transporter = nodemailer.createTransport({
+    host: config.smtp.host || "smtp.gmail.com",
+    port: port,
+    secure: isDirectSsl,
+    requireTLS: !isDirectSsl,
+    auth: {
+      user: config.smtp.auth.user,
+      pass: config.smtp.auth.pass,
+    },
+    connectionTimeout: 20000,
+    greetingTimeout: 20000,
+    socketTimeout: 25000,
+    tls: { rejectUnauthorized: false },
+  });
 
   try {
     await transporter.verify();

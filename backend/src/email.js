@@ -1,6 +1,22 @@
+import os from "os";
 import dns from "dns";
-// Resolve IPv4 before IPv6 to prevent connection timeouts in Render/cloud container networks
+
+// Render container networks do not have outbound IPv6 routing.
+// Force IPv4 DNS resolution and filter network interfaces so Nodemailer only connects via IPv4.
 dns.setDefaultResultOrder("ipv4first");
+try {
+  const origInterfaces = os.networkInterfaces;
+  os.networkInterfaces = () => {
+    const ifaces = origInterfaces();
+    const ipv4Only = {};
+    for (const [name, addrs] of Object.entries(ifaces)) {
+      ipv4Only[name] = (addrs || []).filter((a) => a.family === "IPv4" || a.family === 4);
+    }
+    return ipv4Only;
+  };
+} catch {
+  // Ignore in restricted environments
+}
 
 import nodemailer from "nodemailer";
 import { config, validateConfig } from "./config.js";
@@ -11,47 +27,29 @@ let transporter = null;
 
 /**
  * Initializes and returns the Nodemailer SMTP transporter.
- * Supports built-in Gmail service mode as well as custom host/port/TLS.
+ * Uses port 587 with STARTTLS by default (most reliable on cloud hosts like Render).
  */
 export function getTransporter() {
   if (!transporter) {
-    const isGmail = config.smtp.service === "gmail" || config.smtp.host === "smtp.gmail.com";
+    const port = config.smtp.port || 587;
+    const isDirectSsl = port === 465 || config.smtp.secure === true;
 
-    const baseAuth = {
-      user: config.smtp.auth.user,
-      pass: config.smtp.auth.pass,
-    };
-
-    let transportOptions;
-
-    if (isGmail) {
-      // Use Nodemailer's built-in Gmail preset with sensible timeouts
-      transportOptions = {
-        service: "gmail",
-        auth: baseAuth,
-        connectionTimeout: 15000,
-        greetingTimeout: 15000,
-        socketTimeout: 20000,
-        tls: {
-          rejectUnauthorized: false,
-        },
-      };
-    } else {
-      transportOptions = {
-        host: config.smtp.host,
-        port: config.smtp.port,
-        secure: config.smtp.secure, // true for 465, false for 587
-        auth: baseAuth,
-        connectionTimeout: 15000,
-        greetingTimeout: 15000,
-        socketTimeout: 20000,
-        tls: {
-          rejectUnauthorized: false,
-        },
-      };
-    }
-
-    transporter = nodemailer.createTransport(transportOptions);
+    transporter = nodemailer.createTransport({
+      host: config.smtp.host || "smtp.gmail.com",
+      port: port,
+      secure: isDirectSsl, // false for 587 (STARTTLS), true for 465
+      requireTLS: !isDirectSsl,
+      auth: {
+        user: config.smtp.auth.user,
+        pass: config.smtp.auth.pass,
+      },
+      connectionTimeout: 20000,
+      greetingTimeout: 20000,
+      socketTimeout: 25000,
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
   }
   return transporter;
 }
