@@ -1,23 +1,4 @@
-import os from "os";
-import dns from "dns";
-
-// Render container networks do not have outbound IPv6 routing.
-// Force IPv4 DNS resolution and filter network interfaces so Nodemailer only connects via IPv4.
-dns.setDefaultResultOrder("ipv4first");
-try {
-  const origInterfaces = os.networkInterfaces;
-  os.networkInterfaces = () => {
-    const ifaces = origInterfaces();
-    const ipv4Only = {};
-    for (const [name, addrs] of Object.entries(ifaces)) {
-      ipv4Only[name] = (addrs || []).filter((a) => a.family === "IPv4" || a.family === 4);
-    }
-    return ipv4Only;
-  };
-} catch {
-  // Ignore in restricted environments
-}
-
+import "./forceIpv4.js";
 import nodemailer from "nodemailer";
 import { config, validateConfig } from "./config.js";
 import { logger } from "./logger.js";
@@ -28,6 +9,7 @@ let transporter = null;
 /**
  * Initializes and returns the Nodemailer SMTP transporter.
  * Uses port 587 with STARTTLS by default (most reliable on cloud hosts like Render).
+ * Forces IPv4 network connections.
  */
 export function getTransporter() {
   if (!transporter) {
@@ -37,6 +19,7 @@ export function getTransporter() {
     transporter = nodemailer.createTransport({
       host: config.smtp.host || "smtp.gmail.com",
       port: port,
+      family: 4,
       secure: isDirectSsl, // false for 587 (STARTTLS), true for 465
       requireTLS: !isDirectSsl,
       auth: {

@@ -1,23 +1,4 @@
-import os from "os";
-import dns from "dns";
-
-// Render container networks do not have outbound IPv6 routing.
-// Force IPv4 DNS order and filter network interfaces so Nodemailer/Node never attempts unreachable IPv6 addresses.
-dns.setDefaultResultOrder("ipv4first");
-try {
-  const origInterfaces = os.networkInterfaces;
-  os.networkInterfaces = () => {
-    const ifaces = origInterfaces();
-    const ipv4Only = {};
-    for (const [name, addrs] of Object.entries(ifaces)) {
-      ipv4Only[name] = (addrs || []).filter((a) => a.family === "IPv4" || a.family === 4);
-    }
-    return ipv4Only;
-  };
-} catch {
-  // Ignore in restricted environments
-}
-
+import "./forceIpv4.js";
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
