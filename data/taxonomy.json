@@ -2,23 +2,23 @@
  "categories": [
   {
    "slug": "house-relocation",
-   "name": "house relocation",
-   "description": null
+   "name": "House Relocation",
+   "description": "Expert guides and professional tips for seamless house relocations across New Zealand."
   },
   {
    "slug": "household-moving",
    "name": "Household Moving",
-   "description": null
+   "description": "Comprehensive household moving advice, practical packing checklists, and cost-saving tips."
   },
   {
    "slug": "packing-and-moving-company",
    "name": "Packing and Moving Company",
-   "description": null
+   "description": "Professional packing strategies and moving industry best practices to protect your furniture and valuables."
   },
   {
    "slug": "relocation-moving",
    "name": "Relocation Moving",
-   "description": null
+   "description": "Complete relocation advice for residential, office, and commercial moves throughout New Zealand."
   }
  ],
  "tags": [

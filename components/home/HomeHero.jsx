@@ -18,7 +18,7 @@ export default function HomeHero() {
     <section className="relative overflow-hidden bg-night">
       <img
         src="/wp-content/uploads/2025/01/40330.jpg"
-        alt=""
+        alt="National Movers moving truck and professional relocation team in New Zealand"
         fetchPriority="high"
         className="absolute inset-0 h-full w-full object-cover object-bottom"
       />

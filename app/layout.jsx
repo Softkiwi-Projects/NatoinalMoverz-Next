@@ -5,6 +5,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import FloatingQuoteTab from "@/components/layout/FloatingQuoteTab";
+import QuoteJourneyProvider from "@/components/quote-journey/QuoteJourneyProvider";
+import { DEFAULT_ROBOTS, buildGlobalLocalBusinessJsonLd } from "@/lib/seo";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -33,6 +35,8 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+const defaultOgImage = `${site.url}/wp-content/uploads/2025/01/40330.jpg`;
+
 export const metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -40,25 +44,52 @@ export const metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  robots: DEFAULT_ROBOTS,
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: site.favicon,
     apple: site.appleIcon,
   },
   openGraph: {
+    title: `${site.name} | Moving Company New Zealand`,
+    description: site.description,
+    url: `${site.url}/`,
     siteName: site.name,
-    type: "website",
     locale: "en_NZ",
+    type: "website",
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: `${site.name} Moving Company New Zealand`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} | Moving Company New Zealand`,
+    description: site.description,
+    images: [defaultOgImage],
   },
 };
 
-import QuoteJourneyProvider from "@/components/quote-journey/QuoteJourneyProvider";
-
 export default function RootLayout({ children }) {
+  const globalSchema = buildGlobalLocalBusinessJsonLd();
+
   return (
     <html
       lang="en-NZ"
       className={`${nunito.variable} ${nunitoSans.variable} ${biryani.variable} ${jakarta.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
+        />
+      </head>
       <body className="flex min-h-screen flex-col">
         <QuoteJourneyProvider>
           <Header />

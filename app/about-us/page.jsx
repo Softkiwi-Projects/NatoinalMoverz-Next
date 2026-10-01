@@ -8,13 +8,45 @@ import ContactStrip from "@/components/sections/ContactStrip";
 import Icon from "@/components/ui/Icon";
 import { getPageContent, getBlocks } from "@/lib/content";
 import { services } from "@/data/services";
+import { site } from "@/data/site";
+import { cleanTitle, getCanonicalUrl, DEFAULT_ROBOTS, buildBreadcrumbJsonLd } from "@/lib/seo";
 
 export function generateMetadata() {
   const page = getPageContent("about-us");
+  const title = cleanTitle(page?.title, "About Us");
+  const description =
+    page?.description ||
+    "Learn about National Movers, New Zealand's trusted moving specialists. Professional house, furniture, and office relocations nationwide.";
+  const canonicalUrl = getCanonicalUrl("about-us");
+  const ogImage = `${site.url}/wp-content/uploads/2025/01/2149312723.jpg`;
+
   return {
-    title: page?.title || "About Us",
-    description: page?.description,
-    alternates: { canonical: "/about-us" },
+    title,
+    description,
+    robots: DEFAULT_ROBOTS,
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title: `${title} | ${site.name}`,
+      description,
+      url: canonicalUrl,
+      siteName: site.name,
+      locale: "en_NZ",
+      type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: "About National Movers",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${site.name}`,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
@@ -32,9 +64,17 @@ export default function AboutPage() {
   const blocks = getBlocks("about-us");
   // Intro paragraph(s) following "We are a New Zealand based top Mover company".
   const introParas = extractParas(blocks, "We are a New Zealand");
+  const breadcrumbs = buildBreadcrumbJsonLd([
+    { name: "Home", item: "/" },
+    { name: "About Us", item: "/about-us/" },
+  ]);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       {/* HERO — yellow card + multi-step quote form (same treatment as service pages) */}
       <section
         id="quote"

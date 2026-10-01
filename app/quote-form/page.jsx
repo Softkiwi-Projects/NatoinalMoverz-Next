@@ -6,19 +6,60 @@ import Stats from "@/components/sections/Stats";
 import ContactStrip from "@/components/sections/ContactStrip";
 import { getPageContent } from "@/lib/content";
 import { services } from "@/data/services";
+import { site } from "@/data/site";
+import { cleanTitle, getCanonicalUrl, DEFAULT_ROBOTS, buildBreadcrumbJsonLd } from "@/lib/seo";
 
 export function generateMetadata() {
   const page = getPageContent("quote-form");
+  const title = cleanTitle(page?.title, "Get a Free Quote");
+  const description =
+    page?.description ||
+    "Request a fast, free moving quote from National Movers. Affordable household, office, and furniture relocations across New Zealand.";
+  const canonicalUrl = getCanonicalUrl("quote-form");
+  const ogImage = `${site.url}/wp-content/uploads/2018/12/Quote-img.png`;
+
   return {
-    title: page?.title || "Get a Free Quote",
-    description: page?.description || "Request a fast, free moving quote from National Movers.",
-    alternates: { canonical: "/quote-form" },
+    title,
+    description,
+    robots: DEFAULT_ROBOTS,
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title: `${title} | ${site.name}`,
+      description,
+      url: canonicalUrl,
+      siteName: site.name,
+      locale: "en_NZ",
+      type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 800,
+          height: 600,
+          alt: "Get a Free Moving Quote from National Movers",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${site.name}`,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
 export default function QuoteFormPage() {
+  const breadcrumbs = buildBreadcrumbJsonLd([
+    { name: "Home", item: "/" },
+    { name: "Get a Quote", item: "/quote-form/" },
+  ]);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       {/* HERO — form on light grey + delivery-man figure */}
       <section className="bg-surface-light">
         <div className="container-page grid items-center gap-8 pt-12 md:pt-16 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">

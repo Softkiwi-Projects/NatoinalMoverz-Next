@@ -3,13 +3,45 @@ import TitleBar from "@/components/layout/TitleBar";
 import PostCard from "@/components/sections/PostCard";
 import CTA from "@/components/sections/CTA";
 import { getAllPosts, getCategories, getPageContent } from "@/lib/content";
+import { site } from "@/data/site";
+import { cleanTitle, getCanonicalUrl, DEFAULT_ROBOTS, buildBreadcrumbJsonLd } from "@/lib/seo";
 
 export function generateMetadata() {
   const page = getPageContent("blog");
+  const title = cleanTitle(page?.title, "Blog & Moving Tips");
+  const description =
+    page?.description ||
+    "Expert moving tips, packing advice, and relocation checklists from National Movers New Zealand. Make your next move smooth and stress-free.";
+  const canonicalUrl = getCanonicalUrl("blog");
+  const ogImage = `${site.url}/wp-content/uploads/elementor/thumbs/title-bar-new.webp`;
+
   return {
-    title: page?.title || "Blog",
-    description: page?.description || "Moving tips, guides, and insights from National Movers.",
-    alternates: { canonical: "/blog" },
+    title,
+    description,
+    robots: DEFAULT_ROBOTS,
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title: `${title} | ${site.name}`,
+      description,
+      url: canonicalUrl,
+      siteName: site.name,
+      locale: "en_NZ",
+      type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 400,
+          alt: "National Movers Blog",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${site.name}`,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
@@ -18,8 +50,17 @@ export default function BlogPage() {
   const categories = getCategories();
   const [featured, ...rest] = posts;
 
+  const breadcrumbs = buildBreadcrumbJsonLd([
+    { name: "Home", item: "/" },
+    { name: "Blog", item: "/blog/" },
+  ]);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       <TitleBar
         title="Blog"
         crumbs={[{ label: "Blog" }]}

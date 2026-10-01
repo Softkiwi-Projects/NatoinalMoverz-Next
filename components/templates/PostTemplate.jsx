@@ -15,7 +15,7 @@ export default function PostTemplate({ post }) {
   const category = post.categories?.[0];
   const blocks = post.blocks || [];
   const { day, month } = dateBadge(post.published);
-  const postUrl = `${site.url}/${post.slug}`;
+  const postUrl = `${site.url}/${post.slug}/`;
 
   const shareLinks = [
     { icon: "facebook", label: "Share on Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}` },
