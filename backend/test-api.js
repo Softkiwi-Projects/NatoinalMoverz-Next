@@ -239,7 +239,7 @@ async function runTests() {
           phone: "021 555 1234",
           moveType: "2 Bedrooms",
           date: "2026-10-15",
-          pickup: "36a Sixteenth Ave, Tauranga",
+          pickup: "23 Lisa Place, Brookfield, Tauranga",
           dropoff: "10 Queen St, Auckland",
         },
       });

@@ -481,7 +481,7 @@ ${message}
                 National Movers New Zealand
               </p>
               <p style="margin: 4px 0 0; color: #475569;">
-                36a Sixteenth Avenue, Tauranga · Phone: 0800 600 003 · info@nationalmovers.co.nz
+                23 Lisa Place, Brookfield, Tauranga · Phone: 0800 600 003 · info@nationalmovers.co.nz
               </p>
               <p style="margin: 8px 0 0; font-size: 10px; color: #334155;">
                 Protected by rate limiting and spam honeypot filters.

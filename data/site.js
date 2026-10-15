@@ -19,8 +19,8 @@ export const site = {
   // },
   email: "info@nationalmovers.co.nz",
   address: {
-    line: "36a Sixteenth Avenue, Tauranga",
-    href: "https://maps.google.com/?q=36a+Sixteenth+Avenue+Tauranga",
+    line: "23 Lisa Place, Brookfield, Tauranga",
+    href: "https://maps.google.com/?q=23+Lisa+Place+Brookfield+Tauranga",
   },
   hours: "Mon – Sat: 7:00am – 7:00pm",
   social: [
