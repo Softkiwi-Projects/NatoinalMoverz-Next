@@ -7,6 +7,7 @@ import BackToTop from "@/components/layout/BackToTop";
 import FloatingQuoteTab from "@/components/layout/FloatingQuoteTab";
 import QuoteJourneyProvider from "@/components/quote-journey/QuoteJourneyProvider";
 import { DEFAULT_ROBOTS, buildGlobalLocalBusinessJsonLd } from "@/lib/seo";
+import { INTRO_BOOT_SCRIPT } from "@/components/intro/SplashTransition";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -82,9 +83,12 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en-NZ"
+      suppressHydrationWarning
       className={`${nunito.variable} ${nunitoSans.variable} ${biryani.variable} ${jakarta.variable}`}
     >
       <head>
+        {/* Homepage intro boot: must run before first paint so the splash shows instantly */}
+        <script dangerouslySetInnerHTML={{ __html: INTRO_BOOT_SCRIPT }} />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
