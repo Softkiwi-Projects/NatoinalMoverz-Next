@@ -96,7 +96,7 @@ export default function RootLayout({ children }) {
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TMSGTKZK');`,
+})(window,document,'script','dataLayer','GTM-T6LB6KSS');`,
           }}
         />
         {/* Google tag (gtag.js) */}
@@ -121,7 +121,7 @@ gtag('config', 'G-6K8X1Q2FWN');`,
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-TMSGTKZK"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-T6LB6KSS"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
