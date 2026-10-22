@@ -74,7 +74,7 @@ export default function QuoteFormPage() {
               Tell us about your upcoming move and our team will get in touch shortly with a tailored estimate.
             </p>
             <div className="quote-stagger-form">
-              <QuoteForm variant="light" />
+              <QuoteForm className="w-full max-w-lg shadow-2xl" />
             </div>
           </div>
 

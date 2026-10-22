@@ -94,10 +94,15 @@ export function validateContactSubmission(body) {
   let rawMessage = typeof body.message === "string" ? body.message.trim() : "";
   if (!rawMessage) {
     const details = [];
-    if (body.moveType) details.push(`Move Type: ${body.moveType}`);
+    const moveCat = body.category || body.moveType;
+    if (moveCat) details.push(`Category: ${moveCat}`);
+    if (body.bedrooms) details.push(`Bedrooms: ${body.bedrooms}`);
+    if (body.officeSize) details.push(`Office Size: ${body.officeSize}`);
+    if (body.items) details.push(`Items to Move: ${body.items}`);
     if (body.date || body["Pickup date"]) details.push(`Pickup Date: ${body.date || body["Pickup date"]}`);
-    if (body.pickup || body["Pickup address"]) details.push(`Pickup Address: ${body.pickup || body["Pickup address"]}`);
-    if (body.dropoff || body["Drop-off address"]) details.push(`Drop-off Address: ${body.dropoff || body["Drop-off address"]}`);
+    if (body.pickup || body.from || body["Pickup address"]) details.push(`Pickup Address: ${body.pickup || body.from || body["Pickup address"]}`);
+    if (body.dropoff || body.to || body["Drop-off address"]) details.push(`Drop-off Address: ${body.dropoff || body.to || body["Drop-off address"]}`);
+    if (body.heavyItems) details.push(`Extra Heavy Items: ${body.heavyItems}`);
     if (details.length > 0) {
       rawMessage = `Quote Request Details:\n${details.join("\n")}`;
     }
@@ -111,6 +116,11 @@ export function validateContactSubmission(body) {
     errors.push({ field: "message", message: "Message must not exceed 5000 characters." });
   }
 
+  const resolvedCategory = typeof (body.category || body.moveType) === "string" ? stripCrlf(body.category || body.moveType) : null;
+  const resolvedDate = typeof (body.date || body["Pickup date"]) === "string" ? stripCrlf(body.date || body["Pickup date"]) : null;
+  const resolvedPickup = typeof (body.pickup || body.from || body["Pickup address"]) === "string" ? stripCrlf(body.pickup || body.from || body["Pickup address"]) : null;
+  const resolvedDropoff = typeof (body.dropoff || body.to || body["Drop-off address"]) === "string" ? stripCrlf(body.dropoff || body.to || body["Drop-off address"]) : null;
+
   return {
     valid: errors.length === 0,
     errors,
@@ -119,10 +129,16 @@ export function validateContactSubmission(body) {
       email: rawEmail,
       phone: rawPhone || null,
       message: rawMessage,
-      moveType: typeof body.moveType === "string" ? stripCrlf(body.moveType) : null,
-      date: typeof (body.date || body["Pickup date"]) === "string" ? stripCrlf(body.date || body["Pickup date"]) : null,
-      pickup: typeof (body.pickup || body["Pickup address"]) === "string" ? stripCrlf(body.pickup || body["Pickup address"]) : null,
-      dropoff: typeof (body.dropoff || body["Drop-off address"]) === "string" ? stripCrlf(body.dropoff || body["Drop-off address"]) : null,
+      category: resolvedCategory,
+      moveType: resolvedCategory,
+      bedrooms: typeof body.bedrooms === "string" ? stripCrlf(body.bedrooms) : null,
+      officeSize: typeof body.officeSize === "string" ? stripCrlf(body.officeSize) : null,
+      items: typeof body.items === "string" ? stripCrlf(body.items) : null,
+      heavyItems: typeof body.heavyItems === "string" ? stripCrlf(body.heavyItems) : null,
+      date: resolvedDate,
+      pickup: resolvedPickup,
+      dropoff: resolvedDropoff,
+      termsAccepted: Boolean(body.termsAccepted),
     },
   };
 }

@@ -97,24 +97,50 @@ function formatSubmissionTime(date = new Date()) {
  * @param {string|null} [submission.pickup] - Optional pickup address
  * @param {string|null} [submission.dropoff] - Optional dropoff address
  */
-export async function sendContactEmail({ name, email, phone, message, moveType, date, pickup, dropoff }) {
+export async function sendContactEmail({
+  name,
+  email,
+  phone,
+  message,
+  moveType,
+  category,
+  bedrooms,
+  officeSize,
+  items,
+  heavyItems,
+  date,
+  pickup,
+  dropoff,
+  termsAccepted,
+}) {
   const client = getTransporter();
   const submissionTime = formatSubmissionTime();
   const phoneDisplay = phone || "Not provided";
   const cleanPhone = phone ? phone.replace(/[^0-9+]/g, "") : "";
+
+  const resolvedCategory = category || moveType || "";
+  const resolvedDetails = officeSize
+    ? `Office Size: ${officeSize}`
+    : items
+      ? `Items: ${items}`
+      : bedrooms
+        ? `${bedrooms}`
+        : "";
 
   // Sanitize fields for safe HTML rendering
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
   const safePhone = escapeHtml(phoneDisplay);
   const safeMessage = escapeHtml(message).replace(/\n/g, "<br/>");
-  const safeMoveType = moveType ? escapeHtml(moveType) : "";
+  const safeCategory = resolvedCategory ? escapeHtml(resolvedCategory) : "";
+  const safeDetails = resolvedDetails ? escapeHtml(resolvedDetails) : "";
+  const safeHeavyItems = heavyItems ? escapeHtml(heavyItems) : "";
   const safeDate = date ? escapeHtml(date) : "";
   const safePickup = pickup ? escapeHtml(pickup) : "";
   const safeDropoff = dropoff ? escapeHtml(dropoff) : "";
 
-  const isQuote = Boolean(moveType || pickup || dropoff || date);
-  const subject = `${config.mail.subjectPrefix} ${isQuote ? "🚚 New Quote Request" : "✨ New Message"} from ${safeName}`;
+  const isQuote = Boolean(resolvedCategory || pickup || dropoff || date || bedrooms || officeSize || items || heavyItems);
+  const subject = `${config.mail.subjectPrefix} ${isQuote ? `🚚 New Quote Request (${safeCategory || "Move"})` : "✨ New Message"} from ${safeName}`;
 
   // Plain-text email fallback
   const textBody = `
@@ -132,10 +158,10 @@ CLIENT DOSSIER:
 ${isQuote ? `
 LOGISTICS & MOVE DETAILS:
 ------------------------------------------------------
-• Move Type:       ${moveType || "Not specified"}
-• Target Date:     ${date || "Not specified"}
-• Pickup Address:  ${pickup || "Not specified"}
-• Drop-off Address:${dropoff || "Not specified"}
+• Category:        ${resolvedCategory || "Not specified"}
+${safeDetails ? `• Size / Details:  ${resolvedDetails}\n` : ""}${safeDate ? `• Target Date:     ${date}\n` : ""}• Pickup Location: ${pickup || "Not specified"}
+• Drop Location:   ${dropoff || "Not specified"}
+${heavyItems ? `• Heavy Items:     ${heavyItems}\n` : ""}${termsAccepted !== undefined ? `• Terms Accepted:  ${termsAccepted ? "Yes" : "No"}\n` : ""}
 ` : ""}
 ------------------------------------------------------
 MESSAGE:
@@ -405,23 +431,41 @@ ${message}
                     <td colspan="2" style="border-top: 1px solid #1a2a3d; padding-top: 12px;">
                       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                         <tr>
-                          ${safeMoveType ? `
-                          <td style="padding-right: 10px;" valign="top">
-                            <span style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">MOVE SIZE:</span><br>
+                          ${safeCategory ? `
+                          <td style="padding-right: 10px; padding-bottom: 10px;" valign="top">
+                            <span style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">CATEGORY:</span><br>
                             <span style="display: inline-block; background-color: #ffd332; color: #09121a; font-weight: 900; font-size: 12px; padding: 4px 12px; border-radius: 6px; margin-top: 4px;">
-                              ${safeMoveType}
+                              ${safeCategory}
+                            </span>
+                          </td>
+                          ` : ""}
+                          ${safeDetails ? `
+                          <td style="padding-right: 10px; padding-bottom: 10px;" valign="top">
+                            <span style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">SIZE / BEDROOMS:</span><br>
+                            <span style="display: inline-block; background-color: #1a2a3c; color: #38bdf8; font-weight: 800; font-size: 12px; padding: 4px 12px; border-radius: 6px; margin-top: 4px; border: 1px solid #2e4764;">
+                              ${safeDetails}
                             </span>
                           </td>
                           ` : ""}
                           ${safeDate ? `
-                          <td valign="top">
+                          <td style="padding-bottom: 10px;" valign="top">
                             <span style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">TARGET DATE:</span><br>
-                            <span style="display: inline-block; background-color: #1a2a3c; color: #38bdf8; font-weight: 800; font-size: 12px; padding: 4px 12px; border-radius: 6px; margin-top: 4px; border: 1px solid #2e4764;">
+                            <span style="display: inline-block; background-color: #1a2a3c; color: #34d399; font-weight: 800; font-size: 12px; padding: 4px 12px; border-radius: 6px; margin-top: 4px; border: 1px solid #10b981;">
                               📅 ${safeDate}
                             </span>
                           </td>
                           ` : ""}
                         </tr>
+                        ${safeHeavyItems ? `
+                        <tr>
+                          <td colspan="3" style="padding-top: 6px;" valign="top">
+                            <span style="font-size: 10px; font-weight: 800; color: #f87171; text-transform: uppercase;">EXTRA HEAVY ITEMS:</span><br>
+                            <span style="display: inline-block; background-color: rgba(239, 68, 68, 0.15); color: #fca5a5; font-weight: 700; font-size: 12px; padding: 4px 12px; border-radius: 6px; margin-top: 4px; border: 1px solid rgba(239, 68, 68, 0.35);">
+                              ⚠️ ${safeHeavyItems}
+                            </span>
+                          </td>
+                        </tr>
+                        ` : ""}
                       </table>
                     </td>
                   </tr>

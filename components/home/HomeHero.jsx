@@ -91,20 +91,5 @@ export default function HomeHero() {
 
 // Navy-headed white card wrapping the multi-step quote form.
 export function QuoteCard({ title = "Get Your Free Quote" }) {
-  return (
-    <div className="mx-auto w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 lg:mx-0">
-      <div className="bg-navy px-5 py-4 sm:px-6">
-        <div className="flex items-center justify-between gap-3">
-          <h2 className="text-lg font-bold text-white">{title}</h2>
-          <span className="shrink-0 rounded-full bg-brand px-2.5 py-1 text-xs font-bold text-navy">
-            3 quick steps
-          </span>
-        </div>
-        <p className="mt-1 text-sm text-white/70">Step-by-step — it only takes a minute.</p>
-      </div>
-      <div className="p-5 sm:p-6">
-        <QuoteForm variant="bds" />
-      </div>
-    </div>
-  );
+  return <QuoteForm title={title} className="mx-auto w-full max-w-md lg:mx-0" />;
 }
