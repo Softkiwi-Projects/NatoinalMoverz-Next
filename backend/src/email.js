@@ -106,6 +106,7 @@ export async function sendContactEmail({
   category,
   bedrooms,
   officeSize,
+  pianoType,
   items,
   heavyItems,
   date,
@@ -121,11 +122,13 @@ export async function sendContactEmail({
   const resolvedCategory = category || moveType || "";
   const resolvedDetails = officeSize
     ? `Office Size: ${officeSize}`
-    : items
-      ? `Items: ${items}`
-      : bedrooms
-        ? `${bedrooms}`
-        : "";
+    : pianoType
+      ? `Piano: ${pianoType}`
+      : items
+        ? `Items: ${items}`
+        : bedrooms
+          ? `${bedrooms}`
+          : "";
 
   // Sanitize fields for safe HTML rendering
   const safeName = escapeHtml(name);
@@ -543,14 +546,25 @@ ${message}
 </html>
 `.trim();
 
+  // Format From address with friendly sender name to prevent spam filters flagging as raw/unauthenticated
+  const cleanSenderEmail = (config.mail.from || config.smtp.auth.user || "").trim();
+  const fromAddress = cleanSenderEmail.includes("<")
+    ? cleanSenderEmail
+    : `"${config.mail.fromName || "National Movers"}" <${cleanSenderEmail}>`;
+
   // Dispatch email with replyTo set to the visitor
   const mailOptions = {
-    from: config.mail.from,
+    from: fromAddress,
     to: config.mail.to,
     replyTo: `"${stripCrlf(name)}" <${stripCrlf(email)}>`,
     subject,
     text: textBody,
     html: htmlBody,
+    headers: {
+      "X-Mailer": "National Movers Dispatcher v1.0",
+      "Auto-Submitted": "auto-generated",
+      "X-Auto-Response-Suppress": "All",
+    },
   };
 
   const info = await client.sendMail(mailOptions);

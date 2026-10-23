@@ -38,7 +38,8 @@ export const config = {
 
   mail: {
     from: process.env.MAIL_FROM || process.env.SMTP_USER || "noreply@nationalmovers.co.nz",
-    to: process.env.MAIL_TO || "hardikgujral1@gmail.com",
+    fromName: process.env.MAIL_FROM_NAME || "National Movers",
+    to: process.env.MAIL_TO || process.env.SMTP_USER || "hardikgujral1@gmail.com",
     subjectPrefix: process.env.MAIL_SUBJECT_PREFIX || "[Website Contact]",
   },
 };

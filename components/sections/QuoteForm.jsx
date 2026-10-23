@@ -7,10 +7,11 @@ import { site } from "@/data/site";
 const BACKEND_API_URL = process.env.NEXT_PUBLIC_CONTACT_API_URL || "http://localhost:5000/api/contact";
 const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
+// Exact 8 categories from BDS Movers
 const MOVE_CATEGORIES = [
   { label: "Home / Flat", icon: "home" },
-  { label: "Office", icon: "office" },
-  { label: "Apartment", icon: "apartment" },
+  { label: "Office", icon: "briefcase" },
+  { label: "Apartment", icon: "building" },
   { label: "Items Only", icon: "package" },
   { label: "Long Distance", icon: "map-pinned" },
   { label: "Senior Move", icon: "heart-handshake" },
@@ -66,7 +67,7 @@ export default function QuoteForm({
   const [sending, setSending] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
 
-  // If showHeader is not explicitly passed, hide it when rendered inside an existing parent title (e.g. yellow hero card)
+  // If showHeader is not explicitly passed, hide it when embedded inside an existing parent card
   const isEmbedded = variant === "yellow" || variant === "panel" || variant === "hero";
   const shouldShowHeader = showHeader !== undefined ? showHeader : !isEmbedded;
 
@@ -271,7 +272,7 @@ export default function QuoteForm({
       setErrors({
         form:
           err.message ||
-          `Sorry — we couldn't send your request just now. Please try again or call 0800 600 003.`,
+          `Something went wrong. Please try again or call ${site.phone?.label || "0800 600 003"}.`,
       });
     } finally {
       setSending(false);
@@ -294,40 +295,41 @@ export default function QuoteForm({
     <div
       className={`overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 ${className}`}
     >
-      {/* Top Header Strip */}
+      {/* Top Header Strip - Theme Dark (#14212a) with Brand Yellow Badge & Fill */}
       {shouldShowHeader ? (
-        <div className="bg-[#0b1f4d] px-5 py-4 sm:px-6">
+        <div className="bg-[#14212a] px-5 py-4 sm:px-6 border-b border-[#233543]">
           <div className="flex items-center justify-between gap-3">
-            <h2 className="text-lg font-bold text-white">{title}</h2>
-            <span className="shrink-0 rounded-full bg-[#e11d2e] px-2.5 py-1 text-xs font-semibold text-white">
+            <h2 className="text-lg font-bold text-white tracking-tight">{title}</h2>
+            <span className="shrink-0 rounded-full bg-brand px-3 py-1 text-xs font-extrabold text-ink-strong shadow-sm">
               3 quick steps
             </span>
           </div>
-          <p className="mt-1 text-sm text-white/70">
+          <p className="mt-1 text-sm text-slate-300">
             60 seconds · No obligation · Response within 2 hours
           </p>
 
-          {/* Progress Bar Track & Fill */}
-          <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/15">
+          {/* Progress Bar Track & Brand Yellow Fill */}
+          <div className="mt-3.5 h-2 overflow-hidden rounded-full bg-white/15">
             <div
-              className="h-full rounded-full bg-[#e11d2e] transition-all duration-300 ease-out"
+              className="h-full rounded-full bg-brand transition-all duration-300 ease-out"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
 
-          <p className="mt-2 text-xs font-medium text-white/60">
-            Step {step} of 3
-          </p>
+          <div className="mt-2 flex items-center justify-between text-xs font-semibold text-slate-300">
+            <span>Step {step} of 3</span>
+            <span className="text-brand font-bold">{Math.round(progressPercent)}%</span>
+          </div>
         </div>
       ) : (
         <div className="border-b border-slate-100 px-5 pt-5 pb-3">
           <div className="flex items-center justify-between text-xs font-bold text-slate-500 mb-2">
             <span>Step {step} of 3</span>
-            <span className="text-[#e11d2e] font-extrabold">{Math.round(progressPercent)}%</span>
+            <span className="text-ink-strong font-extrabold">{Math.round(progressPercent)}%</span>
           </div>
-          <div className="h-1.5 overflow-hidden rounded-full bg-slate-100">
+          <div className="h-2 overflow-hidden rounded-full bg-slate-100">
             <div
-              className="h-full rounded-full bg-[#e11d2e] transition-all duration-300 ease-out"
+              className="h-full rounded-full bg-brand transition-all duration-300 ease-out"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -336,7 +338,7 @@ export default function QuoteForm({
 
       {submitted ? (
         <div className="flex flex-col items-center justify-center p-8 text-center" role="status">
-          <div className="mb-4 flex size-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <div className="mb-4 flex size-14 items-center justify-center rounded-full bg-brand/20 text-ink-strong">
             <svg
               className="size-7"
               viewBox="0 0 24 24"
@@ -351,14 +353,14 @@ export default function QuoteForm({
               <path d="m9 12 2 2 4-4" />
             </svg>
           </div>
-          <h3 className="text-xl font-bold text-[#0b1f4d]">Quote request received!</h3>
-          <p className="mt-2 text-pretty text-slate-600">
+          <h3 className="text-xl font-bold text-ink-strong">Quote request received!</h3>
+          <p className="mt-2 text-pretty text-ink-soft">
             Thanks{data.name ? `, ${data.name}` : ""} — our Tauranga team will be in touch shortly, usually within 2 hours.
           </p>
           <button
             type="button"
             onClick={resetForm}
-            className="mt-6 inline-flex h-11 items-center justify-center rounded-xl bg-[#e11d2e] px-6 text-sm font-bold text-white hover:bg-[#c71827] transition-colors shadow-sm"
+            className="mt-6 inline-flex h-11 items-center justify-center rounded-xl bg-brand px-6 text-sm font-extrabold text-ink-strong hover:bg-brand-hover transition-colors shadow-sm"
           >
             Submit another request
           </button>
@@ -379,8 +381,8 @@ export default function QuoteForm({
           {/* ================= STEP 1: WHAT ARE YOU MOVING? ================= */}
           {step === 1 && (
             <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-wide text-slate-500">
-                What are you moving?
+              <p className="mb-3 text-xs font-bold uppercase tracking-wide text-ink-soft">
+                WHAT ARE YOU MOVING?
               </p>
 
               <div className="grid grid-cols-3 gap-2.5">
@@ -391,20 +393,20 @@ export default function QuoteForm({
                       key={cat.label}
                       type="button"
                       onClick={() => setData((prev) => ({ ...prev, category: cat.label }))}
-                      className={`flex flex-col items-center justify-center gap-2 rounded-xl border p-3 text-center transition-all ${
+                      className={`flex flex-col items-center justify-center gap-2 rounded-xl p-3 text-center transition-all ${
                         isSelected
-                          ? "border-[#e11d2e] bg-[#fef2f2] text-[#0b1f4d] shadow-sm ring-1 ring-[#e11d2e]/30"
-                          : "border-slate-200 bg-white text-slate-700 hover:border-[#e11d2e]/40 hover:bg-slate-50/80"
+                          ? "border-2 border-brand bg-[#fffdf0] text-ink-strong shadow-sm ring-1 ring-brand/40"
+                          : "border border-slate-200 bg-white text-ink hover:border-brand/70 hover:bg-[#fffdf5]/60"
                       }`}
                       aria-pressed={isSelected}
                     >
-                      <CategoryIcon
+                      <BdsIcon
                         name={cat.icon}
                         className={`size-5 transition-colors ${
-                          isSelected ? "text-[#e11d2e]" : "text-[#0b1f4d]"
+                          isSelected ? "text-ink-strong" : "text-ink-soft"
                         }`}
                       />
-                      <span className="text-xs font-semibold leading-tight text-[#0b1f4d]">
+                      <span className="text-xs font-bold leading-tight text-ink-strong">
                         {cat.label}
                       </span>
                     </button>
@@ -412,17 +414,18 @@ export default function QuoteForm({
                 })}
               </div>
 
+              {/* Next Button in Website Brand Yellow Theme */}
               <button
                 type="button"
                 onClick={handleNextStep1}
-                className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#e11d2e] text-base font-bold text-white shadow-sm hover:bg-[#c71827] transition-colors"
+                className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand text-base font-extrabold text-ink-strong shadow-md hover:bg-brand-hover transition-colors"
               >
                 <span>Next — Moving Details</span>
                 <ArrowRightIcon className="size-4" />
               </button>
 
-              <div className="mt-4 flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">
-                <LockIcon className="size-3.5 text-slate-400" />
+              <div className="mt-4 flex items-center justify-center gap-1.5 text-center text-xs text-ink-soft">
+                <LockIcon className="size-3.5 text-ink-soft" />
                 <span>Your details are private & never shared</span>
               </div>
             </div>
@@ -431,7 +434,7 @@ export default function QuoteForm({
           {/* ================= STEP 2: MOVE DETAILS ================= */}
           {step === 2 && (
             <div className="flex flex-col gap-4">
-              <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+              <p className="text-xs font-bold uppercase tracking-wide text-ink-soft">
                 {isOffice
                   ? "Office move details"
                   : isItemsOnly
@@ -448,10 +451,10 @@ export default function QuoteForm({
                     value={data.pickup}
                     onChange={update("pickup")}
                     placeholder="e.g. Tauranga Central"
-                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
+                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-ink-strong placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
                       errors.pickup
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-slate-200 focus:border-[#e11d2e] focus:ring-[#e11d2e]/20"
+                        : "border-slate-200 focus:border-brand-dark focus:ring-brand/30"
                     }`}
                   />
                 </FormField>
@@ -464,10 +467,10 @@ export default function QuoteForm({
                     value={data.dropoff}
                     onChange={update("dropoff")}
                     placeholder="e.g. Mount Maunganui"
-                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
+                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-ink-strong placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
                       errors.dropoff
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-slate-200 focus:border-[#e11d2e] focus:ring-[#e11d2e]/20"
+                        : "border-slate-200 focus:border-brand-dark focus:ring-brand/30"
                     }`}
                   />
                 </FormField>
@@ -482,25 +485,25 @@ export default function QuoteForm({
                     name="date"
                     value={data.date}
                     onChange={update("date")}
-                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-slate-900 outline-none transition-all focus:ring-2 ${
+                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-ink-strong outline-none transition-all focus:ring-2 ${
                       errors.date
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-slate-200 focus:border-[#e11d2e] focus:ring-[#e11d2e]/20"
+                        : "border-slate-200 focus:border-brand-dark focus:ring-brand/30"
                     }`}
                   />
                 </FormField>
 
-                {/* Dynamic Field: Bedrooms / Office Size / Items */}
+                {/* Number of bedrooms for residential */}
                 {isStandardBedrooms && (
                   <FormField label="Number of bedrooms" required error={errors.bedrooms}>
                     <select
                       name="bedrooms"
                       value={data.bedrooms}
                       onChange={update("bedrooms")}
-                      className={`h-12 w-full rounded-xl border bg-white px-3 text-sm text-slate-900 outline-none transition-all focus:ring-2 ${
+                      className={`h-12 w-full rounded-xl border bg-white px-3 text-sm text-ink-strong outline-none transition-all focus:ring-2 ${
                         errors.bedrooms
                           ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                          : "border-slate-200 focus:border-[#e11d2e] focus:ring-[#e11d2e]/20"
+                          : "border-slate-200 focus:border-brand-dark focus:ring-brand/30"
                       }`}
                     >
                       <option value="" disabled>
@@ -515,16 +518,17 @@ export default function QuoteForm({
                   </FormField>
                 )}
 
+                {/* Office size for office */}
                 {isOffice && (
                   <FormField label="Office size" required error={errors.officeSize}>
                     <select
                       name="officeSize"
                       value={data.officeSize}
                       onChange={update("officeSize")}
-                      className={`h-12 w-full rounded-xl border bg-white px-3 text-sm text-slate-900 outline-none transition-all focus:ring-2 ${
+                      className={`h-12 w-full rounded-xl border bg-white px-3 text-sm text-ink-strong outline-none transition-all focus:ring-2 ${
                         errors.officeSize
                           ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                          : "border-slate-200 focus:border-[#e11d2e] focus:ring-[#e11d2e]/20"
+                          : "border-slate-200 focus:border-brand-dark focus:ring-brand/30"
                       }`}
                     >
                       <option value="" disabled>
@@ -539,6 +543,7 @@ export default function QuoteForm({
                   </FormField>
                 )}
 
+                {/* What are you moving for items only */}
                 {isItemsOnly && (
                   <FormField label="What are you moving?" required error={errors.items}>
                     <input
@@ -547,10 +552,10 @@ export default function QuoteForm({
                       value={data.items}
                       onChange={update("items")}
                       placeholder="e.g. fridge, sofa, 10 boxes"
-                      className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
+                      className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-ink-strong placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
                         errors.items
                           ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                          : "border-slate-200 focus:border-[#e11d2e] focus:ring-[#e11d2e]/20"
+                          : "border-slate-200 focus:border-brand-dark focus:ring-brand/30"
                       }`}
                     />
                   </FormField>
@@ -562,7 +567,7 @@ export default function QuoteForm({
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+                  className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-sm font-bold text-ink-strong hover:bg-slate-50 transition-colors"
                 >
                   <ArrowLeftIcon className="size-4" />
                   <span>Back</span>
@@ -570,15 +575,15 @@ export default function QuoteForm({
                 <button
                   type="button"
                   onClick={handleNextStep2}
-                  className="flex h-12 flex-[2] items-center justify-center gap-2 rounded-xl bg-[#e11d2e] text-base font-bold text-white shadow-sm hover:bg-[#c71827] transition-colors"
+                  className="flex h-12 flex-[2] items-center justify-center gap-2 rounded-xl bg-brand text-base font-extrabold text-ink-strong shadow-md hover:bg-brand-hover transition-colors"
                 >
                   <span>Next — Personal</span>
                   <ArrowRightIcon className="size-4" />
                 </button>
               </div>
 
-              <div className="mt-2 flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">
-                <LockIcon className="size-3.5 text-slate-400" />
+              <div className="mt-2 flex items-center justify-center gap-1.5 text-center text-xs text-ink-soft">
+                <LockIcon className="size-3.5 text-ink-soft" />
                 <span>Your details are private & never shared</span>
               </div>
             </div>
@@ -597,10 +602,10 @@ export default function QuoteForm({
                     onChange={update("name")}
                     placeholder="Your full name"
                     autoComplete="name"
-                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
+                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-ink-strong placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
                       errors.name
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-slate-200 focus:border-[#e11d2e] focus:ring-[#e11d2e]/20"
+                        : "border-slate-200 focus:border-brand-dark focus:ring-brand/30"
                     }`}
                   />
                 </FormField>
@@ -613,10 +618,10 @@ export default function QuoteForm({
                     onChange={update("email")}
                     placeholder="your@email.com"
                     autoComplete="email"
-                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
+                    className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-ink-strong placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
                       errors.email
                         ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-slate-200 focus:border-[#e11d2e] focus:ring-[#e11d2e]/20"
+                        : "border-slate-200 focus:border-brand-dark focus:ring-brand/30"
                     }`}
                   />
                 </FormField>
@@ -631,10 +636,10 @@ export default function QuoteForm({
                   onChange={update("phone")}
                   placeholder="Your phone number"
                   autoComplete="tel"
-                  className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
+                  className={`h-12 w-full rounded-xl border bg-white px-3.5 text-sm text-ink-strong placeholder:text-slate-400 outline-none transition-all focus:ring-2 ${
                     errors.phone
                       ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-                      : "border-slate-200 focus:border-[#e11d2e] focus:ring-[#e11d2e]/20"
+                      : "border-slate-200 focus:border-brand-dark focus:ring-brand/30"
                   }`}
                 />
               </FormField>
@@ -647,7 +652,7 @@ export default function QuoteForm({
                   value={data.heavyItems}
                   onChange={update("heavyItems")}
                   placeholder="e.g. Piano, Spa pool"
-                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-3.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:border-[#e11d2e] focus:ring-2 focus:ring-[#e11d2e]/20"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-3.5 text-sm text-ink-strong placeholder:text-slate-400 outline-none transition-all focus:border-brand-dark focus:ring-2 focus:ring-brand/30"
                 />
               </FormField>
 
@@ -658,9 +663,9 @@ export default function QuoteForm({
                     type="checkbox"
                     checked={data.termsAccepted}
                     onChange={update("termsAccepted")}
-                    className="mt-0.5 size-4 rounded border-slate-300 accent-[#e11d2e] text-[#e11d2e] focus:ring-[#e11d2e]"
+                    className="mt-0.5 size-4 rounded border-slate-300 accent-[#14212a] text-[#14212a] focus:ring-brand"
                   />
-                  <span className="text-xs leading-relaxed text-slate-600">
+                  <span className="text-xs leading-relaxed text-ink-soft">
                     I accept the{" "}
                     <button
                       type="button"
@@ -668,7 +673,7 @@ export default function QuoteForm({
                         e.preventDefault();
                         setShowTermsModal(true);
                       }}
-                      className="font-semibold text-[#0b1f4d] underline-offset-2 hover:underline"
+                      className="font-bold text-ink-strong underline-offset-2 hover:underline hover:text-brand-dark"
                     >
                       Booking Terms & Conditions
                     </button>
@@ -695,7 +700,7 @@ export default function QuoteForm({
                   type="button"
                   onClick={handleBack}
                   disabled={sending}
-                  className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors disabled:cursor-not-allowed disabled:opacity-70"
+                  className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-sm font-bold text-ink-strong hover:bg-slate-50 transition-colors disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   <ArrowLeftIcon className="size-4" />
                   <span>Back</span>
@@ -703,7 +708,7 @@ export default function QuoteForm({
                 <button
                   type="submit"
                   disabled={sending}
-                  className="flex h-12 flex-[2] items-center justify-center gap-2 rounded-xl bg-[#e11d2e] text-base font-bold text-white shadow-sm hover:bg-[#c71827] transition-colors disabled:cursor-not-allowed disabled:opacity-75"
+                  className="flex h-12 flex-[2] items-center justify-center gap-2 rounded-xl bg-brand text-base font-extrabold text-ink-strong shadow-md hover:bg-brand-hover transition-colors disabled:cursor-not-allowed disabled:opacity-75"
                 >
                   {sending ? (
                     <>
@@ -716,8 +721,8 @@ export default function QuoteForm({
                 </button>
               </div>
 
-              <div className="mt-2 flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">
-                <LockIcon className="size-3.5 text-slate-400" />
+              <div className="mt-2 flex items-center justify-center gap-1.5 text-center text-xs text-ink-soft">
+                <LockIcon className="size-3.5 text-ink-soft" />
                 <span>Your details are private & never shared</span>
               </div>
             </div>
@@ -738,7 +743,7 @@ export default function QuoteForm({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-lg font-bold text-[#0b1f4d]">
+              <h3 className="text-lg font-bold text-ink-strong">
                 Booking Terms & Conditions
               </h3>
               <button
@@ -751,28 +756,28 @@ export default function QuoteForm({
               </button>
             </div>
 
-            <div className="mt-4 space-y-3 text-xs leading-relaxed text-slate-600">
+            <div className="mt-4 space-y-3 text-xs leading-relaxed text-ink-soft">
               <p>
-                <strong>1. Quotes & Pricing:</strong> All estimates provided are based on the move details and inventory supplied. Unforeseen access difficulties or heavy item additions may require adjustment.
+                <strong className="text-ink-strong">1. Quotes & Pricing:</strong> All estimates provided are based on the move details and inventory supplied. Unforeseen access difficulties or heavy item additions may require adjustment.
               </p>
               <p>
-                <strong>2. Care & Transit:</strong> Our professional team uses specialized blankets, ties, and equipment to secure and safeguard your furniture throughout the move.
+                <strong className="text-ink-strong">2. Care & Transit:</strong> Our professional team uses specialized blankets, ties, and equipment to secure and safeguard your furniture throughout the move.
               </p>
               <p>
-                <strong>3. Heavy & Delicate Items:</strong> Pianos, spa pools, billiard tables, and extra-heavy goods require advance notice to ensure proper vehicle allocation and specialized equipment.
+                <strong className="text-ink-strong">3. Heavy & Delicate Items:</strong> Pianos, spa pools, billiard tables, and extra-heavy goods require advance notice to ensure proper vehicle allocation and specialized equipment.
               </p>
               <p>
-                <strong>4. Cancellations:</strong> We kindly request at least 48 hours notice for schedule changes or cancellations to accommodate all clients efficiently.
+                <strong className="text-ink-strong">4. Cancellations:</strong> We kindly request at least 48 hours notice for schedule changes or cancellations to accommodate all clients efficiently.
               </p>
               <p>
-                <strong>5. Privacy Commitment:</strong> Your personal contact information is kept strictly confidential and used solely to fulfill your moving quotation.
+                <strong className="text-ink-strong">5. Privacy Commitment:</strong> Your personal contact information is kept strictly confidential and used solely to fulfill your moving quotation.
               </p>
             </div>
 
             <button
               type="button"
               onClick={() => setShowTermsModal(false)}
-              className="mt-6 w-full rounded-xl bg-[#0b1f4d] py-2.5 text-xs font-bold text-white hover:bg-[#14285c] transition-colors"
+              className="mt-6 w-full rounded-xl bg-brand py-2.5 text-xs font-extrabold text-ink-strong hover:bg-brand-hover transition-colors shadow-sm"
             >
               Close & Continue
             </button>
@@ -786,10 +791,10 @@ export default function QuoteForm({
 function FormField({ label, required, optional, error, children }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-xs font-bold uppercase tracking-wide text-slate-600">
+      <label className="text-xs font-bold uppercase tracking-wide text-ink-strong">
         {label}
-        {required && <span className="text-[#e11d2e]"> *</span>}
-        {optional && <span className="font-normal lowercase text-slate-400"> (optional)</span>}
+        {required && <span className="text-amber-500"> *</span>}
+        {optional && <span className="font-normal lowercase text-ink-soft"> (optional)</span>}
       </label>
       {children}
       {error && <p className="text-xs text-red-600 font-medium">{error}</p>}
@@ -799,7 +804,7 @@ function FormField({ label, required, optional, error, children }) {
 
 function Spinner() {
   return (
-    <svg className="size-4 animate-spin text-white" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <svg className="size-4 animate-spin text-ink-strong" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" className="opacity-25" />
       <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
     </svg>
@@ -842,73 +847,73 @@ function CloseIcon({ className = "size-5" }) {
   );
 }
 
-function CategoryIcon({ name, className = "size-5" }) {
+function BdsIcon({ name, className = "size-5" }) {
   switch (name) {
     case "home":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
-          <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
       );
-    case "office":
+    case "briefcase":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-          <rect width="20" height="14" x="2" y="6" rx="2" />
+          <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          <rect width="20" height="14" x="2" y="6" rx="2"/>
         </svg>
       );
-    case "apartment":
+    case "building":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-          <path d="M10 6h4" />
-          <path d="M10 10h4" />
-          <path d="M10 14h4" />
-          <path d="M10 18h4" />
+          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/>
+          <path d="M10 6h4"/>
+          <path d="M10 10h4"/>
+          <path d="M10 14h4"/>
+          <path d="M10 18h4"/>
         </svg>
       );
     case "package":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
-          <path d="M12 22V12" />
-          <polyline points="3.29 7 12 12 20.71 7" />
-          <path d="m7.5 4.27 9 5.15" />
+          <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/>
+          <path d="M12 22V12"/>
+          <polyline points="3.29 7 12 12 20.71 7"/>
+          <path d="m7.5 4.27 9 5.15"/>
         </svg>
       );
     case "map-pinned":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M18 8c0 3.613-3.8 7.428-5.35 8.82a1 1 0 0 1-1.3 0C9.8 15.428 6 11.613 6 8a6 6 0 0 1 12 0" />
-          <circle cx="12" cy="8" r="2" />
-          <path d="M8.7 14A8.051 8.051 0 0 0 4 20" />
-          <path d="M15.3 14A8.051 8.051 0 0 1 20 20" />
+          <path d="M18 8c0 3.613-3.8 7.428-5.35 8.82a1 1 0 0 1-1.3 0C9.8 15.428 6 11.613 6 8a6 6 0 0 1 12 0"/>
+          <circle cx="12" cy="8" r="2"/>
+          <path d="M8.7 14A8.051 8.051 0 0 0 4 20"/>
+          <path d="M15.3 14A8.051 8.051 0 0 1 20 20"/>
         </svg>
       );
     case "heart-handshake":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
         </svg>
       );
     case "file-check":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4" />
-          <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-          <path d="m3 15 2 2 4-4" />
+          <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/>
+          <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+          <path d="m3 15 2 2 4-4"/>
         </svg>
       );
     case "truck":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
-          <path d="M15 18H9" />
-          <path d="M19 18h2a1 1 0 0 0 1-1v-5l-4-4h-3v10h1" />
-          <circle cx="7" cy="18" r="2" />
+          <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+          <path d="M15 18H9"/>
+          <path d="M19 18h2a1 1 0 0 0 1-1v-5l-4-4h-3v10h1"/>
+          <circle cx="7" cy="18" r="2"/>
           <circle cx="17" cy="18" r="2" />
         </svg>
       );

@@ -98,6 +98,7 @@ export function validateContactSubmission(body) {
     if (moveCat) details.push(`Category: ${moveCat}`);
     if (body.bedrooms) details.push(`Bedrooms: ${body.bedrooms}`);
     if (body.officeSize) details.push(`Office Size: ${body.officeSize}`);
+    if (body.pianoType) details.push(`Piano Type: ${body.pianoType}`);
     if (body.items) details.push(`Items to Move: ${body.items}`);
     if (body.date || body["Pickup date"]) details.push(`Pickup Date: ${body.date || body["Pickup date"]}`);
     if (body.pickup || body.from || body["Pickup address"]) details.push(`Pickup Address: ${body.pickup || body.from || body["Pickup address"]}`);
@@ -133,6 +134,7 @@ export function validateContactSubmission(body) {
       moveType: resolvedCategory,
       bedrooms: typeof body.bedrooms === "string" ? stripCrlf(body.bedrooms) : null,
       officeSize: typeof body.officeSize === "string" ? stripCrlf(body.officeSize) : null,
+      pianoType: typeof body.pianoType === "string" ? stripCrlf(body.pianoType) : null,
       items: typeof body.items === "string" ? stripCrlf(body.items) : null,
       heavyItems: typeof body.heavyItems === "string" ? stripCrlf(body.heavyItems) : null,
       date: resolvedDate,
