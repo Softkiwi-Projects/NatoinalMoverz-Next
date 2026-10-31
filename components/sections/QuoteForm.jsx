@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { site } from "@/data/site";
 
 // Backend API endpoint for contact and quote submissions (Google SMTP + Rate Limiting)
@@ -56,6 +57,7 @@ export default function QuoteForm({
   showHeader,
   defaultCategory,
 }) {
+  const router = useRouter();
   const botRef = useRef(null);
   const [step, setStep] = useState(1);
   const [data, setData] = useState({
@@ -170,6 +172,7 @@ export default function QuoteForm({
     // Bot honeypot check
     if (botRef.current?.checked) {
       setSubmitted(true);
+      router.push("/thank-you");
       return;
     }
 
@@ -235,6 +238,10 @@ export default function QuoteForm({
       }
 
       setSubmitted(true);
+      const params = new URLSearchParams();
+      if (data.name) params.set("name", data.name.trim());
+      if (data.category) params.set("category", data.category);
+      router.push(`/thank-you?${params.toString()}`);
     } catch (err) {
       // Fallback to Web3Forms if configured and fetch failed
       if (WEB3FORMS_KEY && err.message?.includes("fetch")) {
@@ -262,6 +269,10 @@ export default function QuoteForm({
           const fbResult = await fallbackRes.json().catch(() => ({}));
           if (fallbackRes.ok && fbResult.success) {
             setSubmitted(true);
+            const params = new URLSearchParams();
+            if (data.name) params.set("name", data.name.trim());
+            if (data.category) params.set("category", data.category);
+            router.push(`/thank-you?${params.toString()}`);
             return;
           }
         } catch {
