@@ -18,7 +18,7 @@ export default function LocationHero({
   city = "",
   description,
   bullets = defaultBullets,
-  image = "/wp-content/uploads/2025/09/WhatsApp-Image-2025-07-02-at-15.27.17-scaled.jpeg",
+  image = "/wp-content/uploads/2025/01/2149103441.jpg",
   mobileImage = "/wp-content/uploads/2023/10/bg-new-03-1.jpg",
 }) {
   const desc =

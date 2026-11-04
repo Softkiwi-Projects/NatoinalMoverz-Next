@@ -38,7 +38,12 @@ export default function CityTemplate({ city }) {
 
   return (
     <>
-      <LocationHero title={heroTitle} city={city.city} bullets={heroBullets} />
+      <LocationHero
+        title={heroTitle}
+        city={city.city}
+        bullets={heroBullets}
+        image={city.heroImage || city.image}
+      />
 
       <LocationIntro
         city={city.city}
@@ -53,7 +58,7 @@ export default function CityTemplate({ city }) {
 
       <Stats />
 
-      <QualityFocus />
+      <QualityFocus {...(city.qualityImage ? { image: city.qualityImage } : {})} />
 
       <PlanMove />
     </>

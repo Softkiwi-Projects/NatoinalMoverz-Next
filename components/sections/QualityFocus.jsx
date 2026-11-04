@@ -6,7 +6,7 @@ export default function QualityFocus({
   eyebrow = "Focused on Quality",
   title = "We take care of your belongings like they're our own.",
   text = "From the first box to the last, our team treats every item with the attention it deserves. Careful handling, quality materials, and a genuine commitment to getting your move right — that's the National Movers difference.",
-  image = "/wp-content/uploads/2025/09/WhatsApp-Image-2025-06-24-at-13.01.41-e1756786317436.jpeg",
+  image = "/wp-content/uploads/2023/10/img-02.jpg",
   points = [
     "Trained, background-checked movers",
     "Premium packing & protective materials",

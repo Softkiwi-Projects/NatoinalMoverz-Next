@@ -5,6 +5,7 @@ export const cities = [
     city: "Tauranga",
     title: "Tauranga Movers",
     image: "/wp-content/uploads/2025/01/2149103441.jpg",
+    qualityImage: "/wp-content/uploads/2023/10/img-02.jpg",
     blurb: "Our home base — trusted local movers across the Bay of Plenty.",
   },
   {
