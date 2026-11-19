@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Movers - Email Template Redesign Preview</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .top-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .toolbar-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      background: #ffd332;
+      color: #0f172a;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .tab-group {
+      display: flex;
+      gap: 8px;
+    }
+    .tab-btn {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .tab-btn:hover {
+      color: #ffffff;
+      background: #334155;
+    }
+    .tab-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      border-color: #ffffff;
+    }
+    .preview-container {
+      max-width: 860px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+    .email-frame {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    .notes-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #334155;
+    }
+    .notes-box strong {
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-toolbar">
+    <div class="toolbar-title">
+      <span>National Movers Email Redesign</span>
+      <span class="badge">Professional Client Edition</span>
+    </div>
+    <div class="tab-group">
+      <button class="tab-btn active" onclick="switchView('quote')">Sample 1: Quote Request</button>
+      <button class="tab-btn" onclick="switchView('contact')">Sample 2: General Enquiry</button>
+    </div>
+  </header>
+
+  <div class="preview-container">
+    <div class="notes-box">
+      <strong>Design Summary:</strong> Replaced the flashy dark gaming theme and multi-color rainbow gradient with a crisp, executive corporate aesthetic. Uses National Movers' signature navy header, refined subtle gold accent, structured metadata grid, clean typography, and high-readability action buttons.
+    </div>
+
+    <!-- SAMPLE 1: QUOTE REQUEST -->
+    <div id="view-quote" class="email-frame">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4f6f8; padding: 36px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+        <tr>
+          <td align="center">
+
+            <table role="presentation" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06); border: 1px solid #e2e8f0;" cellspacing="0" cellpadding="0" border="0">
+              
+              <!-- Top Accent Bar -->
+              <tr>
+                <td height="4" style="background-color: #0f172a; line-height: 4px; font-size: 1px;">
+                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                      <td width="72" height="4" style="background-color: #ffd332; line-height: 4px; font-size: 1px;">&nbsp;</td>
+                      <td height="4" style="background-color: #0f172a; line-height: 4px; font-size: 1px;">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Header: Brand Identity & Badge -->
+              <tr>
+                <td style="padding: 28px 32px 20px;">
+                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                      <td valign="middle">
+                        <div style="font-size: 15px; font-weight: 800; color: #0f172a; letter-spacing: 0.8px; text-transform: uppercase;">
+                          NATIONAL MOVERS
+                        </div>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 2px;">
+                          New Zealand Relocation Specialists
+                        </div>
+                      </td>
+                      <td align="right" valign="middle">
+                        <span style="display: inline-block; background-color: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.5px;">
+                          Quote Request
+                        </span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Divider -->
+              <tr>
+                <td style="border-top: 1px solid #e2e8f0; font-size: 1px; line-height: 1px;">&nbsp;</td>
+              </tr>
+
+              <!-- Overview Callout Box -->
+              <tr>
+                <td style="padding: 24px 32px 16px;">
+                  <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 3px solid #0f172a; border-radius: 4px; padding: 14px 16px;">
+                    <div style="font-size: 14px; font-weight: 700; color: #0f172a;">
+                      New enquiry from Marcus Vance
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; margin-top: 3px;">
+                      Received via website contact dispatch on Wednesday, 19 November 2026 at 2:38 pm (NZT)
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Customer Details -->
+              <tr>
+                <td style="padding: 8px 32px 16px;">
+                  <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">
+                    Customer Contact
+                  </div>
+
+                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;">
+                    <tr>
+                      <td width="50%" valign="top" style="padding-right: 12px; padding-bottom: 12px;">
+                        <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Full Name</div>
+                        <div style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 2px;">
+                          Marcus Vance
+                        </div>
+                      </td>
+                      <td width="50%" valign="top" style="padding-left: 12px; padding-bottom: 12px;">
+                        <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Phone Number</div>
+                        <div style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 2px;">
+                          <a href="tel:021849204" style="color: #0f172a; text-decoration: none;">
+                            021 849 204
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="50%" valign="top" style="padding-right: 12px; padding-bottom: 4px;">
+                        <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Email Address</div>
+                        <div style="font-size: 14px; font-weight: 600; margin-top: 2px; word-break: break-all;">
+                          <a href="mailto:marcus.vance@nzbusiness.co.nz" style="color: #2563eb; text-decoration: underline;">
+                            marcus.vance@nzbusiness.co.nz
+                          </a>
+                        </div>
+                      </td>
+                      <td width="50%" valign="top" style="padding-left: 12px; padding-bottom: 4px;">
+                        <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Timestamp</div>
+                        <div style="font-size: 13px; font-weight: 500; color: #334155; margin-top: 2px;">
+                          Wednesday, 19 November 2026 at 2:38 pm (NZT)
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Move Specifications -->
+              <tr>
+                <td style="padding: 12px 32px 16px;">
+                  <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">
+                    Move Specifications
+                  </div>
+
+                  <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px 18px;">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td width="120" valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Pickup:</span>
+                        </td>
+                        <td valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 14px; font-weight: 600; color: #0f172a;">42 Oceanview Road, Mount Maunganui, Tauranga 3116</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="120" valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Drop-off:</span>
+                        </td>
+                        <td valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 14px; font-weight: 600; color: #0f172a;">18 St Stephens Ave, Parnell, Auckland 1052</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="120" valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Category:</span>
+                        </td>
+                        <td valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 14px; font-weight: 600; color: #0f172a;">House Relocation</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="120" valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Size / Rooms:</span>
+                        </td>
+                        <td valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 14px; font-weight: 600; color: #0f172a;">3 Bedrooms</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="120" valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Target Date:</span>
+                        </td>
+                        <td valign="top" style="padding-bottom: 10px;">
+                          <span style="font-size: 14px; font-weight: 600; color: #0f172a;">28 November 2026</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="120" valign="top">
+                          <span style="font-size: 11px; font-weight: 700; color: #b45309; text-transform: uppercase;">Heavy Items:</span>
+                        </td>
+                        <td valign="top">
+                          <span style="font-size: 13px; font-weight: 600; color: #92400e; background-color: #fef3c7; border: 1px solid #fde68a; border-radius: 4px; padding: 2px 8px; display: inline-block;">
+                            Upright Piano (Ground floor to ground floor)
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Customer Message -->
+              <tr>
+                <td style="padding: 12px 32px 24px;">
+                  <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">
+                    Customer Message
+                  </div>
+                  <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #334155; line-height: 1.6; word-break: break-word;">
+                    Moving a 3-bedroom home from Tauranga to Auckland. We have an upright piano that requires special handling and protective wrapping. Would appreciate an itemized quote including transit insurance options.
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Action Bar -->
+              <tr>
+                <td style="background-color: #ffffff; border-top: 1px solid #e2e8f0; padding: 22px 32px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="left">
+                    <tr>
+                      <td style="padding-right: 12px;">
+                        <a href="mailto:marcus.vance@nzbusiness.co.nz?subject=Re:%20National%20Movers%20Quote%20Request" style="display: inline-block; background-color: #0f172a; color: #ffffff; font-weight: 600; font-size: 14px; text-decoration: none; padding: 11px 22px; border-radius: 6px;">
+                          Reply to Marcus Vance
+                        </a>
+                      </td>
+                      <td>
+                        <a href="tel:021849204" style="display: inline-block; background-color: #ffffff; color: #0f172a; border: 1px solid #cbd5e1; font-weight: 600; font-size: 14px; text-decoration: none; padding: 10px 20px; border-radius: 6px;">
+                          Call Customer
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="clear: both;"></div>
+                  <div style="font-size: 12px; color: #64748b; margin-top: 14px;">
+                    Clicking <strong>Reply</strong> will compose an email to <span style="color: #2563eb;">marcus.vance@nzbusiness.co.nz</span>.
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td style="background-color: #f8fafc; padding: 22px 32px; text-align: center; color: #64748b; font-size: 12px; line-height: 1.6; border-top: 1px solid #e2e8f0;">
+                  <div style="font-weight: 700; color: #334155; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">
+                    National Movers New Zealand
+                  </div>
+                  <div style="margin-top: 4px; color: #64748b; font-size: 12px;">
+                    23 Lisa Place, Brookfield, Tauranga · Phone: 0800 600 003 · info@nationalmovers.co.nz
+                  </div>
+                  <div style="margin-top: 8px; font-size: 11px; color: #94a3b8;">
+                    Dispatched automatically via website quote & contact engine.
+                  </div>
+                </td>
+              </tr>
+
+            </table>
+
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SAMPLE 2: CONTACT ENQUIRY -->
+    <div id="view-contact" class="email-frame" style="display: none;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4f6f8; padding: 36px 14px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+        <tr>
+          <td align="center">
+
+            <table role="presentation" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06); border: 1px solid #e2e8f0;" cellspacing="0" cellpadding="0" border="0">
+              
+              <!-- Top Accent Bar -->
+              <tr>
+                <td height="4" style="background-color: #0f172a; line-height: 4px; font-size: 1px;">
+                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                      <td width="72" height="4" style="background-color: #ffd332; line-height: 4px; font-size: 1px;">&nbsp;</td>
+                      <td height="4" style="background-color: #0f172a; line-height: 4px; font-size: 1px;">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Header: Brand Identity & Badge -->
+              <tr>
+                <td style="padding: 28px 32px 20px;">
+                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                      <td valign="middle">
+                        <div style="font-size: 15px; font-weight: 800; color: #0f172a; letter-spacing: 0.8px; text-transform: uppercase;">
+                          NATIONAL MOVERS
+                        </div>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 2px;">
+                          New Zealand Relocation Specialists
+                        </div>
+                      </td>
+                      <td align="right" valign="middle">
+                        <span style="display: inline-block; background-color: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.5px;">
+                          Website Enquiry
+                        </span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Divider -->
+              <tr>
+                <td style="border-top: 1px solid #e2e8f0; font-size: 1px; line-height: 1px;">&nbsp;</td>
+              </tr>
+
+              <!-- Overview Callout Box -->
+              <tr>
+                <td style="padding: 24px 32px 16px;">
+                  <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 3px solid #0f172a; border-radius: 4px; padding: 14px 16px;">
+                    <div style="font-size: 14px; font-weight: 700; color: #0f172a;">
+                      New enquiry from Sarah Jenkins
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; margin-top: 3px;">
+                      Received via website contact dispatch on Wednesday, 19 November 2026 at 2:42 pm (NZT)
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Customer Details -->
+              <tr>
+                <td style="padding: 8px 32px 16px;">
+                  <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">
+                    Customer Contact
+                  </div>
+
+                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;">
+                    <tr>
+                      <td width="50%" valign="top" style="padding-right: 12px; padding-bottom: 12px;">
+                        <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Full Name</div>
+                        <div style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 2px;">
+                          Sarah Jenkins
+                        </div>
+                      </td>
+                      <td width="50%" valign="top" style="padding-left: 12px; padding-bottom: 12px;">
+                        <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Phone Number</div>
+                        <div style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 2px;">
+                          <a href="tel:0274559182" style="color: #0f172a; text-decoration: none;">
+                            027 455 9182
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="50%" valign="top" style="padding-right: 12px; padding-bottom: 4px;">
+                        <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Email Address</div>
+                        <div style="font-size: 14px; font-weight: 600; margin-top: 2px; word-break: break-all;">
+                          <a href="mailto:sarah.j@outlook.com" style="color: #2563eb; text-decoration: underline;">
+                            sarah.j@outlook.com
+                          </a>
+                        </div>
+                      </td>
+                      <td width="50%" valign="top" style="padding-left: 12px; padding-bottom: 4px;">
+                        <div style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Timestamp</div>
+                        <div style="font-size: 13px; font-weight: 500; color: #334155; margin-top: 2px;">
+                          Wednesday, 19 November 2026 at 2:42 pm (NZT)
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- Customer Message -->
+              <tr>
+                <td style="padding: 12px 32px 24px;">
+                  <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">
+                    Customer Message
+                  </div>
+                  <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #334155; line-height: 1.6; word-break: break-word;">
+                    Hi team, do you provide packing materials and wardrobe boxes prior to the moving day? We are planning a move in early December within Tauranga. Thanks!
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Action Bar -->
+              <tr>
+                <td style="background-color: #ffffff; border-top: 1px solid #e2e8f0; padding: 22px 32px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="left">
+                    <tr>
+                      <td style="padding-right: 12px;">
+                        <a href="mailto:sarah.j@outlook.com?subject=Re:%20National%20Movers%20Quote%20Request" style="display: inline-block; background-color: #0f172a; color: #ffffff; font-weight: 600; font-size: 14px; text-decoration: none; padding: 11px 22px; border-radius: 6px;">
+                          Reply to Sarah Jenkins
+                        </a>
+                      </td>
+                      <td>
+                        <a href="tel:0274559182" style="display: inline-block; background-color: #ffffff; color: #0f172a; border: 1px solid #cbd5e1; font-weight: 600; font-size: 14px; text-decoration: none; padding: 10px 20px; border-radius: 6px;">
+                          Call Customer
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="clear: both;"></div>
+                  <div style="font-size: 12px; color: #64748b; margin-top: 14px;">
+                    Clicking <strong>Reply</strong> will compose an email to <span style="color: #2563eb;">sarah.j@outlook.com</span>.
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td style="background-color: #f8fafc; padding: 22px 32px; text-align: center; color: #64748b; font-size: 12px; line-height: 1.6; border-top: 1px solid #e2e8f0;">
+                  <div style="font-weight: 700; color: #334155; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">
+                    National Movers New Zealand
+                  </div>
+                  <div style="margin-top: 4px; color: #64748b; font-size: 12px;">
+                    23 Lisa Place, Brookfield, Tauranga · Phone: 0800 600 003 · info@nationalmovers.co.nz
+                  </div>
+                  <div style="margin-top: 8px; font-size: 11px; color: #94a3b8;">
+                    Dispatched automatically via website quote & contact engine.
+                  </div>
+                </td>
+              </tr>
+
+            </table>
+
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <script>
+    function switchView(tab) {
+      const q = document.getElementById('view-quote');
+      const c = document.getElementById('view-contact');
+      const buttons = document.querySelectorAll('.tab-btn');
+
+      if (tab === 'quote') {
+        q.style.display = 'block';
+        c.style.display = 'none';
+        buttons[0].classList.add('active');
+        buttons[1].classList.remove('active');
+      } else {
+        q.style.display = 'none';
+        c.style.display = 'block';
+        buttons[0].classList.remove('active');
+        buttons[1].classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

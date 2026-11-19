@@ -143,7 +143,7 @@ export async function sendContactEmail({
   const safeDropoff = dropoff ? escapeHtml(dropoff) : "";
 
   const isQuote = Boolean(resolvedCategory || pickup || dropoff || date || bedrooms || officeSize || items || heavyItems);
-  const subject = `${config.mail.subjectPrefix} ${isQuote ? `🚚 New Quote Request (${safeCategory || "Move"})` : "✨ New Message"} from ${safeName}`;
+  const subject = `${config.mail.subjectPrefix} ${isQuote ? `Quote Request (${safeCategory || "Move"})` : "Website Enquiry"} - ${safeName}`;
 
   // Plain-text email fallback
   const textBody = `
@@ -152,22 +152,22 @@ NATIONAL MOVERS - NEW WEBSITE ENQUIRY
 ======================================================
 A new enquiry has been submitted through the website.
 
-CLIENT DOSSIER:
+CLIENT DETAILS:
 ------------------------------------------------------
 • Name:            ${name}
 • Email:           ${email}
 • Phone:           ${phoneDisplay}
 • Submitted:       ${submissionTime}
 ${isQuote ? `
-LOGISTICS & MOVE DETAILS:
+MOVE SPECIFICATIONS:
 ------------------------------------------------------
 • Category:        ${resolvedCategory || "Not specified"}
 ${safeDetails ? `• Size / Details:  ${resolvedDetails}\n` : ""}${safeDate ? `• Target Date:     ${date}\n` : ""}• Pickup Location: ${pickup || "Not specified"}
-• Drop Location:   ${dropoff || "Not specified"}
+• Drop-off:        ${dropoff || "Not specified"}
 ${heavyItems ? `• Heavy Items:     ${heavyItems}\n` : ""}${termsAccepted !== undefined ? `• Terms Accepted:  ${termsAccepted ? "Yes" : "No"}\n` : ""}
 ` : ""}
 ------------------------------------------------------
-MESSAGE:
+MESSAGE / NOTES:
 ------------------------------------------------------
 ${message}
 ------------------------------------------------------
@@ -176,7 +176,7 @@ ${message}
 ======================================================
 `.trim();
 
-  // Ultra-Aesthetic, Dark-Mode Optimized, Fully Responsive HTML Email Template
+  // Clean, Corporate, Highly-Readable Professional HTML Email Template
   const htmlBody = `
 <!DOCTYPE html>
 <html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -206,333 +206,331 @@ ${message}
       width: 100% !important;
       -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
-      background-color: #070c12 !important;
+      background-color: #f4f6f8;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    table {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+    td, th {
+      border-collapse: collapse;
     }
     @media only screen and (max-width: 600px) {
       .outer-wrap {
-        padding: 12px 6px !important;
+        padding: 12px 8px !important;
       }
-      .main-card {
-        border-radius: 12px !important;
+      .content-cell {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
       }
-      .header-padding {
-        padding: 24px 20px 20px !important;
-      }
-      .body-padding {
-        padding: 16px 18px !important;
-      }
-      .hero-title {
-        font-size: 22px !important;
-      }
-      .btn-stack {
+      .stack-col {
         display: block !important;
         width: 100% !important;
         box-sizing: border-box !important;
-        margin-bottom: 10px !important;
-        text-align: center !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 12px !important;
       }
-      .btn-cell {
+      .btn-table {
+        width: 100% !important;
+      }
+      .btn-table td {
         display: block !important;
         width: 100% !important;
-        padding: 0 0 10px !important;
+        padding: 0 0 10px 0 !important;
+      }
+      .btn-block {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
       }
     }
     @media (prefers-color-scheme: dark) {
       body, .email-bg {
-        background-color: #05080c !important;
+        background-color: #0b0f17 !important;
       }
       .main-card {
-        background-color: #0c1522 !important;
-        border-color: #1e2d3d !important;
+        background-color: #111827 !important;
+        border-color: #1f2937 !important;
       }
-      .text-light {
-        color: #ffffff !important;
+      .card-inner, .spec-table {
+        background-color: #172033 !important;
+        border-color: #24324a !important;
+      }
+      .text-main {
+        color: #f9fafb !important;
+      }
+      .text-muted {
+        color: #94a3b8 !important;
+      }
+      .text-body {
+        color: #e2e8f0 !important;
+      }
+      .badge-neutral {
+        background-color: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #cbd5e1 !important;
+      }
+      .btn-secondary {
+        background-color: #1f2937 !important;
+        color: #f3f4f6 !important;
+        border-color: #374151 !important;
+      }
+      .footer-bg {
+        background-color: #0c121d !important;
+        border-color: #1f2937 !important;
+      }
+      .divider {
+        border-color: #1f2937 !important;
       }
     }
   </style>
 </head>
-<body class="email-bg" style="margin: 0; padding: 0; background-color: #070c12; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #f8fafc; line-height: 1.5;">
+<body class="email-bg" style="margin: 0; padding: 0; background-color: #f4f6f8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #1e293b; line-height: 1.5;">
 
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="email-bg outer-wrap" style="background-color: #070c12; padding: 32px 14px;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="email-bg outer-wrap" style="background-color: #f4f6f8; padding: 36px 14px;">
     <tr>
       <td align="center">
 
         <!-- Main Card Container -->
-        <table role="presentation" width="100%" class="main-card" style="max-width: 620px; background-color: #0c1522; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px #1e2e42; border: 1px solid #1e2e42;" cellspacing="0" cellpadding="0" border="0">
+        <table role="presentation" width="100%" class="main-card" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06); border: 1px solid #e2e8f0;" cellspacing="0" cellpadding="0" border="0">
           
-          <!-- Top Radiant Rainbow Gradient Ribbon -->
+          <!-- Subtle Corporate Top Accent Line (Navy with subtle brand gold accent) -->
           <tr>
-            <td height="5" style="background: linear-gradient(90deg, #ffd332 0%, #f59e0b 25%, #38bdf8 50%, #a855f7 75%, #34d399 100%); line-height: 5px; font-size: 1px;">&nbsp;</td>
-          </tr>
-
-          <!-- Hero Brand Header -->
-          <tr>
-            <td class="header-padding" style="background: linear-gradient(180deg, #101c2d 0%, #0c1522 100%); padding: 32px 32px 24px; border-bottom: 1px solid #1a283a;">
+            <td height="4" style="background-color: #0f172a; line-height: 4px; font-size: 1px;">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                 <tr>
-                  <td>
-                    <!-- Brand Pill Badge -->
-                    <div style="display: inline-block; background-color: rgba(255, 211, 50, 0.15); border: 1px solid rgba(255, 211, 50, 0.5); border-radius: 100px; padding: 4px 14px; margin-bottom: 12px;">
-                      <span style="font-size: 11px; font-weight: 800; color: #ffd332; letter-spacing: 1.8px; text-transform: uppercase;">
-                        🚚 NATIONAL MOVERS NZ
-                      </span>
-                    </div>
+                  <td width="72" height="4" style="background-color: #ffd332; line-height: 4px; font-size: 1px;">&nbsp;</td>
+                  <td height="4" style="background-color: #0f172a; line-height: 4px; font-size: 1px;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
 
-                    <!-- Main Headline -->
-                    <h1 class="hero-title text-light" style="margin: 0; font-size: 25px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px; line-height: 1.25;">
-                      ${isQuote ? "New Quote Request Received" : "New Customer Enquiry"}
-                    </h1>
-                    <p style="margin: 8px 0 0; font-size: 13px; color: #94a3b8; font-weight: 500;">
-                      Lead captured via website dispatch · <span style="color: #ffd332; font-weight: 700;">${submissionTime}</span>
-                    </p>
+          <!-- Header: Brand Identity & Badge -->
+          <tr>
+            <td class="content-cell" style="padding: 28px 32px 20px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td valign="middle">
+                    <div style="font-size: 15px; font-weight: 800; color: #0f172a; letter-spacing: 0.8px; text-transform: uppercase;">
+                      NATIONAL MOVERS
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; margin-top: 2px;">
+                      New Zealand Relocation Specialists
+                    </div>
+                  </td>
+                  <td align="right" valign="middle">
+                    <span class="badge-neutral" style="display: inline-block; background-color: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.5px;">
+                      ${isQuote ? "Quote Request" : "Website Enquiry"}
+                    </span>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- High-Contrast Lead Quick-Bar -->
+          <!-- Divider -->
           <tr>
-            <td class="body-padding" style="padding: 20px 32px 10px;">
-              <div style="background-color: #132236; border: 1px solid #233954; border-left: 4px solid #ffd332; border-radius: 10px; padding: 14px 18px;">
-                <p style="margin: 0; font-size: 14px; font-weight: 700; color: #ffffff;">
-                  ⚡ Action Required: Customer enquiry from <strong style="color: #ffd332;">${safeName}</strong>
-                </p>
-                <p style="margin: 3px 0 0; font-size: 12px; color: #94a3b8;">
-                  Reply directly to this email to contact the customer, or tap below to call.
-                </p>
+            <td class="divider" style="border-top: 1px solid #e2e8f0; font-size: 1px; line-height: 1px;">&nbsp;</td>
+          </tr>
+
+          <!-- Overview Callout Box -->
+          <tr>
+            <td class="content-cell" style="padding: 24px 32px 16px;">
+              <div class="card-inner" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 3px solid #0f172a; border-radius: 4px; padding: 14px 16px;">
+                <div class="text-main" style="font-size: 14px; font-weight: 700; color: #0f172a;">
+                  New enquiry from ${safeName}
+                </div>
+                <div class="text-muted" style="font-size: 12px; color: #64748b; margin-top: 3px;">
+                  Received via website contact dispatch on ${submissionTime}
+                </div>
               </div>
             </td>
           </tr>
 
-          <!-- Client Dossier - Stacked Full-Width High-Contrast Cards -->
+          <!-- Section: Customer Details -->
           <tr>
-            <td class="body-padding" style="padding: 14px 32px 10px;">
-              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; margin-bottom: 12px;">
-                Customer Contact Dossier
+            <td class="content-cell" style="padding: 8px 32px 16px;">
+              <div class="text-muted" style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">
+                Customer Contact
               </div>
 
-              <!-- Item 1: Client Name -->
-              <div style="background-color: #121e2c; border: 1px solid #1e3147; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                  <tr>
-                    <td width="36" valign="middle">
-                      <div style="background-color: rgba(255, 211, 50, 0.18); border: 1px solid rgba(255, 211, 50, 0.4); width: 34px; height: 34px; border-radius: 8px; text-align: center; line-height: 34px; font-size: 16px;">
-                        👤
-                      </div>
-                    </td>
-                    <td style="padding-left: 12px;" valign="middle">
-                      <div style="font-size: 10px; font-weight: 800; color: #ffd332; text-transform: uppercase; letter-spacing: 1.2px;">CLIENT NAME</div>
-                      <div class="text-light" style="font-size: 16px; font-weight: 800; color: #ffffff; margin-top: 2px;">
-                        ${safeName}
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-
-              <!-- Item 2: Email Address -->
-              <div style="background-color: #121e2c; border: 1px solid #1e3147; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                  <tr>
-                    <td width="36" valign="middle">
-                      <div style="background-color: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); width: 34px; height: 34px; border-radius: 8px; text-align: center; line-height: 34px; font-size: 16px;">
-                        ✉️
-                      </div>
-                    </td>
-                    <td style="padding-left: 12px;" valign="middle">
-                      <div style="font-size: 10px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 1.2px;">EMAIL ADDRESS</div>
-                      <div style="font-size: 15px; font-weight: 700; margin-top: 2px; word-break: break-all;">
-                        <a href="mailto:${safeEmail}" style="color: #38bdf8; text-decoration: underline;">
-                          ${safeEmail}
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;">
+                <tr>
+                  <td class="stack-col" width="50%" valign="top" style="padding-right: 12px; padding-bottom: 12px;">
+                    <div class="text-muted" style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Full Name</div>
+                    <div class="text-main" style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 2px;">
+                      ${safeName}
+                    </div>
+                  </td>
+                  <td class="stack-col" width="50%" valign="top" style="padding-left: 12px; padding-bottom: 12px;">
+                    <div class="text-muted" style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Phone Number</div>
+                    <div class="text-main" style="font-size: 14px; font-weight: 600; color: #0f172a; margin-top: 2px;">
+                      ${cleanPhone ? `
+                        <a href="tel:${cleanPhone}" style="color: #0f172a; text-decoration: none;">
+                          ${safePhone}
                         </a>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-
-              <!-- Item 3: Phone Number -->
-              <div style="background-color: #121e2c; border: 1px solid #1e3147; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                  <tr>
-                    <td width="36" valign="middle">
-                      <div style="background-color: rgba(52, 211, 153, 0.18); border: 1px solid rgba(52, 211, 153, 0.4); width: 34px; height: 34px; border-radius: 8px; text-align: center; line-height: 34px; font-size: 16px;">
-                        📞
-                      </div>
-                    </td>
-                    <td style="padding-left: 12px;" valign="middle">
-                      <div style="font-size: 10px; font-weight: 800; color: #34d399; text-transform: uppercase; letter-spacing: 1.2px;">PHONE NUMBER</div>
-                      <div style="font-size: 15px; font-weight: 700; margin-top: 2px;">
-                        ${cleanPhone ? `
-                          <a href="tel:${cleanPhone}" style="color: #34d399; text-decoration: none;">
-                            ${safePhone}
-                          </a>
-                        ` : '<span style="color: #64748b; font-style: italic;">Not provided</span>'}
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-
-              <!-- Item 4: Received Timestamp -->
-              <div style="background-color: #121e2c; border: 1px solid #1e3147; border-radius: 12px; padding: 14px 16px;">
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                  <tr>
-                    <td width="36" valign="middle">
-                      <div style="background-color: rgba(192, 132, 252, 0.18); border: 1px solid rgba(192, 132, 252, 0.4); width: 34px; height: 34px; border-radius: 8px; text-align: center; line-height: 34px; font-size: 16px;">
-                        🕒
-                      </div>
-                    </td>
-                    <td style="padding-left: 12px;" valign="middle">
-                      <div style="font-size: 10px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 1.2px;">SUBMISSION TIMESTAMP</div>
-                      <div style="font-size: 13px; font-weight: 600; color: #cbd5e1; margin-top: 2px;">
-                        ${submissionTime}
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
+                      ` : '<span style="color: #94a3b8; font-style: italic;">Not provided</span>'}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="stack-col" width="50%" valign="top" style="padding-right: 12px; padding-bottom: 4px;">
+                    <div class="text-muted" style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Email Address</div>
+                    <div style="font-size: 14px; font-weight: 600; margin-top: 2px; word-break: break-all;">
+                      <a href="mailto:${safeEmail}" style="color: #2563eb; text-decoration: underline;">
+                        ${safeEmail}
+                      </a>
+                    </div>
+                  </td>
+                  <td class="stack-col" width="50%" valign="top" style="padding-left: 12px; padding-bottom: 4px;">
+                    <div class="text-muted" style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Timestamp</div>
+                    <div class="text-main" style="font-size: 13px; font-weight: 500; color: #334155; margin-top: 2px;">
+                      ${submissionTime}
+                    </div>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
           ${isQuote ? `
-          <!-- Logistics & Moving Route Card -->
+          <!-- Section: Move Specifications -->
           <tr>
-            <td class="body-padding" style="padding: 14px 32px 10px;">
-              <div style="background-color: #101a27; border-radius: 14px; padding: 20px 20px; border: 1px solid #20334a;">
-                <div style="font-size: 11px; font-weight: 800; color: #ffd332; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px;">
-                  🗺️ Moving Logistics & Route Information
-                </div>
+            <td class="content-cell" style="padding: 12px 32px 16px;">
+              <div class="text-muted" style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">
+                Move Specifications
+              </div>
 
+              <div class="spec-table" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px 18px;">
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                   ${safePickup ? `
                   <tr>
-                    <td width="28" valign="top">
-                      <div style="background-color: #10b981; color: #ffffff; width: 22px; height: 22px; border-radius: 50%; text-align: center; line-height: 22px; font-size: 11px; font-weight: 900;">A</div>
+                    <td width="120" valign="top" style="padding-bottom: 10px;">
+                      <span class="text-muted" style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Pickup:</span>
                     </td>
-                    <td style="padding-left: 12px; padding-bottom: 14px;" valign="top">
-                      <div style="font-size: 10px; font-weight: 800; color: #34d399; text-transform: uppercase; letter-spacing: 1px;">PICKUP LOCATION</div>
-                      <div class="text-light" style="font-size: 15px; font-weight: 700; color: #ffffff; margin-top: 2px;">${safePickup}</div>
+                    <td valign="top" style="padding-bottom: 10px;">
+                      <span class="text-main" style="font-size: 14px; font-weight: 600; color: #0f172a;">${safePickup}</span>
                     </td>
                   </tr>
                   ` : ""}
 
                   ${safeDropoff ? `
                   <tr>
-                    <td width="28" valign="top">
-                      <div style="background-color: #8b5cf6; color: #ffffff; width: 22px; height: 22px; border-radius: 50%; text-align: center; line-height: 22px; font-size: 11px; font-weight: 900;">B</div>
+                    <td width="120" valign="top" style="padding-bottom: 10px;">
+                      <span class="text-muted" style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Drop-off:</span>
                     </td>
-                    <td style="padding-left: 12px; padding-bottom: 14px;" valign="top">
-                      <div style="font-size: 10px; font-weight: 800; color: #a78bfa; text-transform: uppercase; letter-spacing: 1px;">DROP-OFF LOCATION</div>
-                      <div class="text-light" style="font-size: 15px; font-weight: 700; color: #ffffff; margin-top: 2px;">${safeDropoff}</div>
+                    <td valign="top" style="padding-bottom: 10px;">
+                      <span class="text-main" style="font-size: 14px; font-weight: 600; color: #0f172a;">${safeDropoff}</span>
                     </td>
                   </tr>
                   ` : ""}
 
+                  ${safeCategory ? `
                   <tr>
-                    <td colspan="2" style="border-top: 1px solid #1a2a3d; padding-top: 12px;">
-                      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                        <tr>
-                          ${safeCategory ? `
-                          <td style="padding-right: 10px; padding-bottom: 10px;" valign="top">
-                            <span style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">CATEGORY:</span><br>
-                            <span style="display: inline-block; background-color: #ffd332; color: #09121a; font-weight: 900; font-size: 12px; padding: 4px 12px; border-radius: 6px; margin-top: 4px;">
-                              ${safeCategory}
-                            </span>
-                          </td>
-                          ` : ""}
-                          ${safeDetails ? `
-                          <td style="padding-right: 10px; padding-bottom: 10px;" valign="top">
-                            <span style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">SIZE / BEDROOMS:</span><br>
-                            <span style="display: inline-block; background-color: #1a2a3c; color: #38bdf8; font-weight: 800; font-size: 12px; padding: 4px 12px; border-radius: 6px; margin-top: 4px; border: 1px solid #2e4764;">
-                              ${safeDetails}
-                            </span>
-                          </td>
-                          ` : ""}
-                          ${safeDate ? `
-                          <td style="padding-bottom: 10px;" valign="top">
-                            <span style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">TARGET DATE:</span><br>
-                            <span style="display: inline-block; background-color: #1a2a3c; color: #34d399; font-weight: 800; font-size: 12px; padding: 4px 12px; border-radius: 6px; margin-top: 4px; border: 1px solid #10b981;">
-                              📅 ${safeDate}
-                            </span>
-                          </td>
-                          ` : ""}
-                        </tr>
-                        ${safeHeavyItems ? `
-                        <tr>
-                          <td colspan="3" style="padding-top: 6px;" valign="top">
-                            <span style="font-size: 10px; font-weight: 800; color: #f87171; text-transform: uppercase;">EXTRA HEAVY ITEMS:</span><br>
-                            <span style="display: inline-block; background-color: rgba(239, 68, 68, 0.15); color: #fca5a5; font-weight: 700; font-size: 12px; padding: 4px 12px; border-radius: 6px; margin-top: 4px; border: 1px solid rgba(239, 68, 68, 0.35);">
-                              ⚠️ ${safeHeavyItems}
-                            </span>
-                          </td>
-                        </tr>
-                        ` : ""}
-                      </table>
+                    <td width="120" valign="top" style="padding-bottom: 10px;">
+                      <span class="text-muted" style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Category:</span>
+                    </td>
+                    <td valign="top" style="padding-bottom: 10px;">
+                      <span class="text-main" style="font-size: 14px; font-weight: 600; color: #0f172a;">${safeCategory}</span>
                     </td>
                   </tr>
+                  ` : ""}
+
+                  ${safeDetails ? `
+                  <tr>
+                    <td width="120" valign="top" style="padding-bottom: 10px;">
+                      <span class="text-muted" style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Size / Rooms:</span>
+                    </td>
+                    <td valign="top" style="padding-bottom: 10px;">
+                      <span class="text-main" style="font-size: 14px; font-weight: 600; color: #0f172a;">${safeDetails}</span>
+                    </td>
+                  </tr>
+                  ` : ""}
+
+                  ${safeDate ? `
+                  <tr>
+                    <td width="120" valign="top" style="padding-bottom: 10px;">
+                      <span class="text-muted" style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Target Date:</span>
+                    </td>
+                    <td valign="top" style="padding-bottom: 10px;">
+                      <span class="text-main" style="font-size: 14px; font-weight: 600; color: #0f172a;">${safeDate}</span>
+                    </td>
+                  </tr>
+                  ` : ""}
+
+                  ${safeHeavyItems ? `
+                  <tr>
+                    <td width="120" valign="top">
+                      <span class="text-muted" style="font-size: 11px; font-weight: 700; color: #b45309; text-transform: uppercase;">Heavy Items:</span>
+                    </td>
+                    <td valign="top">
+                      <span class="text-main" style="font-size: 13px; font-weight: 600; color: #92400e; background-color: #fef3c7; border: 1px solid #fde68a; border-radius: 4px; padding: 2px 8px; display: inline-block;">
+                        ${safeHeavyItems}
+                      </span>
+                    </td>
+                  </tr>
+                  ` : ""}
                 </table>
               </div>
             </td>
           </tr>
           ` : ""}
 
-          <!-- Message / Notes Box -->
+          <!-- Section: Customer Message -->
           <tr>
-            <td class="body-padding" style="padding: 14px 32px 24px;">
-              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; margin-bottom: 10px;">
-                Message / Notes Details
+            <td class="content-cell" style="padding: 12px 32px 24px;">
+              <div class="text-muted" style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">
+                Customer Message
               </div>
-              
-              <div class="text-light" style="background-color: #121e2c; border: 1px solid #1e3147; border-left: 4px solid #ffd332; border-radius: 10px; padding: 18px 20px; font-size: 15px; color: #f1f5f9; line-height: 1.65; word-break: break-word;">
+              <div class="card-inner text-body" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #334155; line-height: 1.6; word-break: break-word;">
                 ${safeMessage}
               </div>
             </td>
           </tr>
 
-          <!-- Dual High-Impact Action Bar (Mobile Responsive Stacking) -->
+          <!-- Action Bar (Buttons) -->
           <tr>
-            <td class="body-padding" style="background-color: #080e16; border-top: 1px solid #1a283a; padding: 26px 32px; text-align: center;">
-              
-              <table role="presentation" class="action-table" cellspacing="0" cellpadding="0" border="0" align="center">
+            <td class="content-cell footer-bg" style="background-color: #ffffff; border-top: 1px solid #e2e8f0; padding: 22px 32px;">
+              <table role="presentation" class="btn-table" cellspacing="0" cellpadding="0" border="0" align="left">
                 <tr>
-                  <!-- Reply via Email Button -->
-                  <td class="btn-cell" align="center" style="padding: 0 6px;">
-                    <a href="mailto:${safeEmail}?subject=Re:%20National%20Movers%20Quote%20Request" class="btn-stack" style="display: inline-block; background-color: #ffd332; color: #080e16; font-weight: 900; font-size: 15px; text-decoration: none; padding: 14px 28px; border-radius: 50px; box-shadow: 0 4px 16px rgba(255, 211, 50, 0.4); letter-spacing: 0.3px;">
-                      ✉️ Reply to ${safeName}
+                  <td style="padding-right: 12px;">
+                    <a href="mailto:${safeEmail}?subject=Re:%20National%20Movers%20Quote%20Request" class="btn-block" style="display: inline-block; background-color: #0f172a; color: #ffffff; font-weight: 600; font-size: 14px; text-decoration: none; padding: 11px 22px; border-radius: 6px;">
+                      Reply to ${safeName}
                     </a>
                   </td>
-
                   ${cleanPhone ? `
-                  <!-- Direct Call Button -->
-                  <td class="btn-cell" align="center" style="padding: 0 6px;">
-                    <a href="tel:${cleanPhone}" class="btn-stack" style="display: inline-block; background-color: #10b981; color: #ffffff; font-weight: 800; font-size: 15px; text-decoration: none; padding: 14px 26px; border-radius: 50px; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35); letter-spacing: 0.3px;">
-                      📞 Call Customer
+                  <td>
+                    <a href="tel:${cleanPhone}" class="btn-block btn-secondary" style="display: inline-block; background-color: #ffffff; color: #0f172a; border: 1px solid #cbd5e1; font-weight: 600; font-size: 14px; text-decoration: none; padding: 10px 20px; border-radius: 6px;">
+                      Call Customer
                     </a>
                   </td>
                   ` : ""}
                 </tr>
               </table>
-
-              <p style="margin: 18px 0 0; font-size: 12px; color: #64748b; font-weight: 500;">
-                Clicking <strong style="color: #ffd332;">Reply</strong> automatically populates <strong style="color: #38bdf8;">${safeEmail}</strong> in your mail app.
-              </p>
+              <div style="clear: both;"></div>
+              <div class="text-muted" style="font-size: 12px; color: #64748b; margin-top: 14px;">
+                Clicking <strong>Reply</strong> will compose an email to <span style="color: #2563eb;">${safeEmail}</span>.
+              </div>
             </td>
           </tr>
 
-          <!-- Corporate Footer -->
+          <!-- Footer -->
           <tr>
-            <td style="background-color: #05090e; padding: 22px 30px; text-align: center; color: #64748b; font-size: 11px; line-height: 1.6; border-top: 1px solid #141e2b;">
-              <p style="margin: 0; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">
+            <td class="footer-bg" style="background-color: #f8fafc; padding: 22px 32px; text-align: center; color: #64748b; font-size: 12px; line-height: 1.6; border-top: 1px solid #e2e8f0;">
+              <div style="font-weight: 700; color: #334155; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">
                 National Movers New Zealand
-              </p>
-              <p style="margin: 4px 0 0; color: #475569;">
+              </div>
+              <div style="margin-top: 4px; color: #64748b; font-size: 12px;">
                 23 Lisa Place, Brookfield, Tauranga · Phone: 0800 600 003 · info@nationalmovers.co.nz
-              </p>
-              <p style="margin: 8px 0 0; font-size: 10px; color: #334155;">
-                Protected by rate limiting and spam honeypot filters.
-              </p>
+              </div>
+              <div style="margin-top: 8px; font-size: 11px; color: #94a3b8;">
+                Dispatched automatically via website quote & contact engine.
+              </div>
             </td>
           </tr>
 
